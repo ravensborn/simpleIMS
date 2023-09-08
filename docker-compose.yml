@@ -13,7 +13,7 @@ services:
     volumes:
       - ./:/var/www
     ports:
-      - "9005:8080"
+      - "9006:8080"
     depends_on:
       - database
     networks:
