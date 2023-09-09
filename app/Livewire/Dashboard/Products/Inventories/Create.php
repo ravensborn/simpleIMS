@@ -30,7 +30,7 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.Products.Inventories.create')
+        return view('livewire.dashboard.products.inventories.create')
             ->extends('layouts.base')
             ->section('content');
     }
