@@ -238,12 +238,10 @@
                     </ul>
                     <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
                         <div>
-                             <span class="badge bg-success-lt">Subscription: {{ config('env.APP_EXPIRY_DATE') }}</span>
-                            &nbsp;/&nbsp;
-                            <span class="badge bg-secondary-lt">Users: {{ config('env.APP_ALLOWED_USERS') }}</span>
+                             <span class="badge bg-success-lt">{{ config('env.APP_EXPIRY_DATE') }}</span>
                             &nbsp;/&nbsp;
                             <span class="badge bg-secondary-lt">
-                                 App Version: {{ config('env.APP_VERSION') }}
+                                 App Ver.: {{ config('env.APP_VERSION') }}
                             </span>
                         </div>
                     </div>

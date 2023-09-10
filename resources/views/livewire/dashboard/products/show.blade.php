@@ -7,7 +7,7 @@
                 <h3>
                     <a href="{{ route('products.index') }}">Manage Products</a>
                     &nbsp;/&nbsp;
-                    {{ $product->number }}
+                    {{ $product->name }}
                 </h3>
             </div>
         </div>

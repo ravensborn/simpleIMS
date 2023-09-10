@@ -7,7 +7,7 @@
                 <h3>
                     <a href="{{ route('products.index') }}">Manage Products</a>
                     &nbsp;/&nbsp;
-                    <a href="{{ route('products.show', $product->id) }}">{{ $product->number }}</a>
+                    <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
                     &nbsp;/&nbsp;
                     <a href="{{ route('products.inventories.index', ['product' => $product->id]) }}">Inventories</a>
                     &nbsp;/&nbsp;

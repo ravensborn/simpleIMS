@@ -48,20 +48,21 @@
                                 </address>
                             </div>
                             <div class="col-6 text-end">
-                                <p class="h3">
-                                    {{ $customer->name }}
-                                </p>
-                                <address>
-                                    @if($customer->email)
-                                        {{ $customer->email }} <br>
-                                    @endif
-                                    {{ $customer->phone_number }}<br>
-                                    {{ $customer->address }}
-                                </address>
+                                <h2>{{ $this->order->number }}</h2>
+                                <div>{{ $this->order->created_at->format('Y-m-d / h:i A') }}</div>
                             </div>
                             <div class="col-12 my-5">
-                                <h1>{{ $this->order->number }}</h1>
-                                <div>Order Date: {{ $this->order->created_at->format('Y-m-d / h:i A') }}</div>
+                                <div>
+                                    <p class="h3"> {{ $customer->name }}</p>
+                                    <address>
+                                        @if($customer->email)
+                                            {{ $customer->email }}<br>
+                                        @endif
+                                        {{ $customer->phone_number  }}<br>
+                                        {{ $customer->address }}
+
+                                    </address>
+                                </div>
                             </div>
                         </div>
                         <table class="table table-transparent table-responsive">
@@ -87,11 +88,11 @@
                                     <td class="text-end">${{ number_format($item->price, 2) }}</td>
                                     <td class="text-end">${{ number_format(($item->price * $item->quantity), 2) }}</td>
                                 </tr>
-                                @endforeach
+                            @endforeach
                             <tr>
                                 <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Due</td>
                                 <td class="font-weight-bold text-end" style="white-space: nowrap;">
-                                  <span class="fw-bold">${{ number_format($order->total) }}</span>
+                                    <span class="fw-bold">${{ number_format($order->total) }}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -104,6 +105,12 @@
                                 <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Remaining</td>
                                 <td class="font-weight-bold text-end" style="white-space: nowrap;">
                                     <span class="fw-bold">${{ number_format($order->total - $order->paid) }} </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Customer Amt. Due</td>
+                                <td class="font-weight-bold text-end" style="white-space: nowrap;">
+                                    <span class="fw-bold">${{ number_format($customer->amount_due, 2) }}</span>
                                 </td>
                             </tr>
                         </table>

@@ -52,20 +52,20 @@
                                 </address>
                             </div>
                             <div class="col-6 text-end">
-                                <p class="h3">
-                                    {{ $customer->name }}
-                                </p>
-                                <address>
-                                    @if($customer->email)
-                                        {{ $customer->email }} <br>
-                                    @endif
-                                    {{ $customer->phone_number }}<br>
-                                    {{ $customer->address }}
-                                </address>
+                                <h2>{{ $this->order->number }} &nbsp;/&nbsp; {{ $this->orderPayment->number }}</h2>
+                                <div>{{ $this->orderPayment->created_at->format('Y-m-d / h:i A') }}</div>
                             </div>
                             <div class="col-12 my-5">
-                                <h2>{{ $this->order->number }} &nbsp;/&nbsp; {{ $this->orderPayment->number }}</h2>
-                                <div>Payment Date: {{ $this->orderPayment->created_at->format('Y-m-d / h:i A') }}</div>
+
+                                <p class="h3"> {{ $customer->name }}</p>
+                                <address>
+                                    @if($customer->email)
+                                        {{ $customer->email }}<br>
+                                    @endif
+                                    {{ $customer->phone_number  }}<br>
+                                    {{ $customer->address }}
+
+                                </address>
                             </div>
                         </div>
                         <table class="table table-transparent table-responsive">
@@ -86,6 +86,12 @@
                                 <td class="font-weight-bold text-uppercase">Total Remaining</td>
                                 <td class="font-weight-bold" style="white-space: nowrap;">
                                     ${{ number_format($order->total - $order->paid) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold text-uppercase">Customer Amt. Due</td>
+                                <td class="font-weight-bold" style="white-space: nowrap;">
+                                    ${{ number_format($customer->amount_due, 2) }}
                                 </td>
                             </tr>
                             </tbody>
