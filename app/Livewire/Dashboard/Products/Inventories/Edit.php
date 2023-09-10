@@ -32,7 +32,7 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.Products.Inventories.edit')
+        return view('livewire.dashboard.products.inventories.edit')
             ->extends('layouts.base')
             ->section('content');
     }
