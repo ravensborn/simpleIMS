@@ -17,6 +17,7 @@ return new class extends Migration
 
             $table->string('number');
             $table->string('name');
+            $table->string('code')->nullable();
 
             $table->bigInteger('available_inventory')->default(0);
             $table->bigInteger('times_sold')->default(0);
@@ -24,9 +25,11 @@ return new class extends Migration
             $table->unsignedBigInteger('default_inventory_id')
                 ->nullable();
 
-            $table->longText('note');
+            $table->longText('note')
+            ->nullable();
 
-            $table->json('properties')->nullable();
+            $table->json('properties')
+                ->nullable();
 
             $table->timestamps();
         });

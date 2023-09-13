@@ -29,6 +29,10 @@
                                 <div class="datagrid-content">{{ $product->number }}</div>
                             </div>
                             <div class="datagrid-item">
+                                <div class="datagrid-title">Code</div>
+                                <div class="datagrid-content">{{ $product->code }}</div>
+                            </div>
+                            <div class="datagrid-item">
                                 <div class="datagrid-title">Available Inventory</div>
                                 <div class="datagrid-content">{{ number_format($product->available_inventory) }}</div>
                             </div>

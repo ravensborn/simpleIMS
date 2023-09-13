@@ -90,27 +90,31 @@
                                 </tr>
                             @endforeach
                             <tr>
-                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Due</td>
+                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Total</td>
                                 <td class="font-weight-bold text-end" style="white-space: nowrap;">
-                                    <span class="fw-bold">${{ number_format($order->total) }}</span>
+                                    <span class="fw-bold">${{ number_format($order->total, 2) }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Paid</td>
+                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Paid</td>
                                 <td class="font-weight-bold text-end" style="white-space: nowrap;">
-                                    <span class="fw-bold">${{ number_format($order->paid) }}</span>
+                                    <span class="fw-bold">${{ number_format($order->paid, 2) }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Remaining</td>
+                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Remaining</td>
                                 <td class="font-weight-bold text-end" style="white-space: nowrap;">
-                                    <span class="fw-bold">${{ number_format($order->total - $order->paid) }} </span>
+                                    <span class="fw-bold">
+                                        ${{ number_format($order->amount_due, 2) }}
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="font-weight-bold text-uppercase text-end">Customer Amt. Due</td>
                                 <td class="font-weight-bold text-end" style="white-space: nowrap;">
-                                    <span class="fw-bold">${{ number_format($customer->amount_due, 2) }}</span>
+                                    <span class="fw-bold">
+                                        ${{ number_format($customer->amount_due, 2) }}
+                                    </span>
                                 </td>
                             </tr>
                         </table>

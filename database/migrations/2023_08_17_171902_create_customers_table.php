@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('email_address')->nullable();
             $table->string('address')->nullable();
 
-            $table->longText('note');
+            $table->longText('note')
+                ->nullable();
 
             $table->json('properties')->nullable();
 

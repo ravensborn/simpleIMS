@@ -64,6 +64,7 @@
                                                 <div class="flex-fill">
                                                     <div class="font-weight-medium">{{ $product->name }}</div>
                                                     <div class="text-secondary">{{ $product->number }}</div>
+                                                    <div class="text-secondary">{{ $product->code }}</div>
                                                 </div>
                                             </div>
                                         </a>

@@ -26,7 +26,7 @@
                         <form wire:submit="store">
 
                             <div class="row">
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <div class="">
                                         <label for="name" class="form-label">
                                             Name
@@ -37,7 +37,18 @@
                                         <div class="text-danger">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
+                                    <div class="mt-3 mt-md-0">
+                                        <label for="code" class="form-label">
+                                            Code
+                                            <small class="text-muted">(optional)</small>
+                                        </label>
+                                        <input type="text" id="code" class="form-control" wire:model="form.code">
+                                        @error('form.code')
+                                        <div class="text-danger">{{ $message }}</div> @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
                                     <div class="mt-3 mt-md-0">
                                         <label for="image" class="form-label">
                                             Image

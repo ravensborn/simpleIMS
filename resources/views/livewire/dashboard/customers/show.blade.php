@@ -44,7 +44,7 @@
 
                             <div class="datagrid-item">
                                 <div class="datagrid-title">Amount Due</div>
-                                <div class="datagrid-content">${{ number_format(123, 2) }}</div>
+                                <div class="datagrid-content">${{ number_format($customer->amount_due, 2) }}</div>
                             </div>
 
                             <div class="datagrid-item">

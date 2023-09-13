@@ -19,6 +19,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
+            'code' => $this->faker->word,
             'number' => config('env.SYS_PRODUCT_PREFIX') . '_' . $this->faker->randomNumber(6, true),
             'available_inventory' => $this->faker->randomNumber(3, true),
             'default_inventory_id' => null,

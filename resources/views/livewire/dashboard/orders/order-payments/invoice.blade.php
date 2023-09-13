@@ -71,21 +71,23 @@
                         <table class="table table-transparent table-responsive">
                             <tbody>
                             <tr>
-                                <td class="font-weight-bold text-uppercase">Total Due</td>
+                                <td class="font-weight-bold text-uppercase">Remaining Due</td>
                                 <td class="font-weight-bold" style="white-space: nowrap;">
-                                     <span class="fw-bold">${{ number_format($order->total) }}</span>
+                                     <span class="fw-bold">${{ number_format($orderPayment->amount + $order->amount_due, 2) }}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="font-weight-bold text-uppercase">Paid</td>
                                 <td class="font-weight-bold" style="white-space: nowrap;">
-                                    <span class="fw-bold">${{ number_format($orderPayment->amount) }}</span>
+                                    <span class="fw-bold">
+                                        ${{ number_format($orderPayment->amount, 2) }}
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bold text-uppercase">Total Remaining</td>
+                                <td class="font-weight-bold text-uppercase">Remaining</td>
                                 <td class="font-weight-bold" style="white-space: nowrap;">
-                                    ${{ number_format($order->total - $order->paid) }}
+                                    ${{ number_format($order->amount_due, 2) }}
                                 </td>
                             </tr>
                             <tr>

@@ -15,15 +15,18 @@ class ProductForm extends Form
     #[Rule('required|string|max:256', as: 'name')]
     public string $name = '';
 
+    #[Rule('nullable|string|max:256', as: 'code')]
+    public string|null $code = '';
+
     #[Rule('nullable|image|mimes:jpg,png|max:10240', as: 'cover image')] //10 MB
     public $image;
 
     public $currentImage;
 
     #[Rule('nullable|string|max:100000', as: 'note')]
-    public string $note = '';
+    public string|null $note = '';
 
-    private array $attributes = ['name', 'note'];
+    private array $attributes = ['name', 'code', 'note'];
 
 
     public function setup($model): void
@@ -31,6 +34,7 @@ class ProductForm extends Form
         $this->model = $model;
 
         $this->name = $model->name;
+        $this->code = $model->code;
         $this->currentImage = $model->getFirstMedia('image')?->getUrl('preview') ?? '';
         $this->note = $model->note;
     }

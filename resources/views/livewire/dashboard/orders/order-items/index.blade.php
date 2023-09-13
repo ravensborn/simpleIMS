@@ -56,7 +56,8 @@
 
                                     <td>
                                         <div class="btn-list flex-nowrap">
-                                            <a class="btn" href="#" wire:click="triggerDeleteOrderItem({{ $item->id }})">
+                                            <a class="btn" href="#"
+                                               wire:click="triggerDeleteOrderItem({{ $item->id }})">
                                                 Delete
                                             </a>
                                         </div>
@@ -97,22 +98,29 @@
                                         {{ $item->number }}
                                     </td>
                                     <td>
-                                       ${{ number_format($item->amount, 2) }}
+                                        ${{ number_format($item->amount, 2) }}
                                     </td>
                                     <td>
                                         {{ $item->created_at->format('Y-m-d / h:i A') }}
                                     </td>
                                     <td>
                                         <div class="btn-list flex-nowrap">
-                                            <a class="btn btn-icon" href="{{ route('orders.order-payments.invoice', ['order' => $order_id, 'orderPayment' => $item->id]) }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-printer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <a class="btn btn-icon"
+                                               href="{{ route('orders.order-payments.invoice', ['order' => $order_id, 'orderPayment' => $item->id]) }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                     class="icon icon-tabler icon-tabler-printer" width="24" height="24"
+                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2"></path>
+                                                    <path
+                                                        d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2"></path>
                                                     <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4"></path>
-                                                    <path d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z"></path>
+                                                    <path
+                                                        d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z"></path>
                                                 </svg>
                                             </a>
-                                            <a class="btn" href="#" wire:click="triggerDeleteOrderPayment({{ $item->id }})">
+                                            <a class="btn" href="#"
+                                               wire:click="triggerDeleteOrderPayment({{ $item->id }})">
                                                 Delete
                                             </a>
                                         </div>
@@ -135,7 +143,8 @@
 
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#item-order-accordion">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#item-order-accordion">
                                 New Order Item
                             </button>
                         </h2>
@@ -161,11 +170,13 @@
                                                 <span class="input-group-text">
                                                      <img style="width: 32px; height: 32px;"
                                                           class="img-fluid object-cover"
-                                                          src="{{ $this->orderItemForm->product->getCover('preview') }}" alt="">
+                                                          src="{{ $this->orderItemForm->product->getCover('preview') }}"
+                                                          alt="">
                                                 </span>
                                                             <input type="text" id="product_id" class="form-control"
                                                                    wire:model="selectedProductString" disabled>
-                                                            <button class="btn" style="width: 70px;" wire:click.prevent="resetNewOrderItemForm()">
+                                                            <button class="btn" style="width: 70px;"
+                                                                    wire:click.prevent="resetNewOrderItemForm()">
                                                                 Reset
                                                             </button>
                                                         </div>
@@ -180,7 +191,11 @@
                                                                    wire:click="selectProduct({{ $product['id'] }})">
                                                         <span class="avatar avatar-xs rounded me-2"
                                                               style="background-image: url('{{ $product['image'] }}')"></span>
-                                                                    {{ $product['name'] }}
+                                                                    @if($product['code'])
+                                                                        {{ $product['code'] . ' / ' . $product['name'] }}
+                                                                    @else
+                                                                        {{ $product['name'] }}
+                                                                    @endif
                                                                 </a>
                                                             @empty
                                                                 <a href="" class="dropdown-item">
@@ -192,12 +207,14 @@
 
                                                 </div>
                                             </div>
-                                            @if($orderItemForm->product_id && count($inventories) > 0)
+                                            @if($orderItemForm->product_id)
                                                 <div class="col-6">
                                                     <div class="mt-3">
                                                         <label for="inventory_id" class="form-label">Inventory <small
                                                                 class="text-danger">*</small></label>
-                                                        <select class="form-control" wire:model.live="orderItemForm.inventory_id" wire:change="inventoryUpdated"
+                                                        <select class="form-control"
+                                                                wire:model.live="orderItemForm.inventory_id"
+                                                                wire:change="inventoryUpdated"
                                                                 id="inventory_id">
                                                             <option value="0"> -- Select an option --</option>
                                                             @foreach($inventories as $inventory)
@@ -220,7 +237,8 @@
                                                             Price ($)
                                                             <small class="text-danger">*</small>
                                                         </label>
-                                                        <input type="text" id="price" class="form-control" wire:model="orderItemForm.price">
+                                                        <input type="text" id="price" class="form-control"
+                                                               wire:model="orderItemForm.price">
                                                         @error('orderItemForm.price')
                                                         <div class="text-danger">{{ $message }}</div> @enderror
                                                     </div>
@@ -232,7 +250,8 @@
                                                             QTY.
                                                             <small class="text-danger">*</small>
                                                         </label>
-                                                        <input type="text" id="quantity" class="form-control" wire:model="orderItemForm.quantity">
+                                                        <input type="text" id="quantity" class="form-control"
+                                                               wire:model="orderItemForm.quantity">
                                                         @error('orderItemForm.quantity')
                                                         <div class="text-danger">{{ $message }}</div> @enderror
                                                     </div>
@@ -241,7 +260,9 @@
                                             @endif
 
                                             <div class="mt-3 border-top pt-3">
-                                                <button @class([ 'btn btn-primary' => true, 'disabled' => !$orderItemForm->inventory_id]) wire:target="storeOrderItem" wire:loading.attr="disabled">
+                                                <button
+                                                    @class([ 'btn btn-primary' => true, 'disabled' => !$orderItemForm->inventory_id]) wire:target="storeOrderItem"
+                                                    wire:loading.attr="disabled">
                                                     <i class="bi bi-plus me-2"></i>
                                                     Add
                                                     <div wire:loading wire:target="storeOrderItem">
@@ -258,7 +279,8 @@
 
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#payment-item-accordion">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#payment-item-accordion">
                                 New Payment
                             </button>
                         </h2>
@@ -273,14 +295,16 @@
                                                         Amount
                                                         <small class="text-danger">*</small>
                                                     </label>
-                                                    <input type="text" id="amount" class="form-control" wire:model="orderPaymentForm.amount">
+                                                    <input type="text" id="amount" class="form-control"
+                                                           wire:model="orderPaymentForm.amount">
                                                     @error('orderPaymentForm.amount')
                                                     <div class="text-danger">{{ $message }}</div> @enderror
                                                 </div>
                                             </div>
 
                                             <div class="mt-3 border-top pt-3">
-                                                <button @class([ 'btn btn-primary' => true]) wire:target="storePayment" wire:loading.attr="disabled">
+                                                <button @class([ 'btn btn-primary' => true]) wire:target="storePayment"
+                                                        wire:loading.attr="disabled">
                                                     <i class="bi bi-plus me-2"></i>
                                                     Add
                                                     <div wire:loading wire:target="storePayment">
@@ -318,7 +342,8 @@
                             </div>
                             <div class="datagrid-item">
                                 <div class="datagrid-title">Amount Due</div>
-                                <div class="datagrid-content">${{ number_format($order->total - $order->paid, 2) }}</div>
+                                <div class="datagrid-content">
+                                    ${{ number_format($order->total - $order->paid, 2) }}</div>
                             </div>
                         </div>
                     </div>

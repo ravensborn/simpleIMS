@@ -72,9 +72,11 @@ class Index extends Component
     {
         if ($this->productSearchQuery) {
 
-            $this->suggestedProducts = Product::where('available_inventory', '>', 0)
-                ->where(function ($q) {
-                    $q->where('name', 'LIKE', '%' . $this->productSearchQuery . '%')->orWhere('number', 'LIKE', '%' . $this->productSearchQuery . '%');
+//            $this->suggestedProducts = Product::where('available_inventory', '>', 0)
+            $this->suggestedProducts = Product::where(function ($q) {
+                    $q->where('name', 'LIKE', '%' . $this->productSearchQuery . '%')
+                        ->orWhere('code', 'LIKE', '%' . $this->productSearchQuery . '%')
+                        ->orWhere('number', $this->productSearchQuery);
                 })
                 ->limit(5)
                 ->get()
@@ -105,7 +107,7 @@ class Index extends Component
     public function loadProductInventories(): void
     {
         $this->inventories = Inventory::where('product_id', $this->orderItemForm->product_id)
-            ->where('quantity', '!=', 0)
+//            ->where('quantity', '!=', 0)
             ->get();
 
         if ($this->orderItemForm->product->default_inventory_id) {

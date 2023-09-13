@@ -59,6 +59,7 @@ class Index extends Component
         $customers = Customer::orderBy('created_at', 'desc');
 
         if ($this->search) {
+            $this->resetPage();
             $customers = $customers->where('name', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('phone_number', 'LIKE', '%' . $this->search . '%');
         }

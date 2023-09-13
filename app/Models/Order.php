@@ -12,7 +12,7 @@ class Order extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'properties' => 'array'
+        'properties' => 'array',
     ];
 
     protected $appends = ['amount_due'];

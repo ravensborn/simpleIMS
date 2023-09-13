@@ -56,6 +56,7 @@ class Index extends Component
         $orders = Order::with('customer')->orderBy('created_at', 'desc');
 
         if ($this->search) {
+            $this->resetPage();
             $orders = $orders->where('number', 'LIKE', '%' . $this->search . '%')
                 ->orWhereHas('customer', function ($query) {
                     $query->where('name', 'LIKE', '%' . $this->search . '%');
