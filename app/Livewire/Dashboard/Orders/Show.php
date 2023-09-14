@@ -16,7 +16,6 @@ class Show extends Component
 
     public function render()
     {
-
         return view('livewire.dashboard.orders.show')
             ->extends('layouts.base')
             ->section('content');

@@ -55,12 +55,13 @@ class Index extends Component
 
     public function render()
     {
-
-        $customers = Customer::orderBy('created_at', 'desc');
+        $customers = Customer::query();
 
         if ($this->search) {
+
             $this->resetPage();
-            $customers = $customers->where('name', 'LIKE', '%' . $this->search . '%')
+
+            $customers->where('name', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('phone_number', 'LIKE', '%' . $this->search . '%');
         }
 

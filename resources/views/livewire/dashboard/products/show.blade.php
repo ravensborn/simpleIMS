@@ -47,10 +47,12 @@
                                     <div class="d-flex align-items-center">
                                         @if($product->getFirstMedia('image'))
                                             <a href="{{ $product->getFirstMedia('image')?->getUrl() }}">
-                                                <span class="avatar me-2 rounded" style="background-image: url('{{ $product->getFirstMedia('image')?->getUrl('preview') ?? '' }}')"></span>
+                                                <span class="avatar me-2 rounded"
+                                                      style="background-image: url('{{ $product->getFirstMedia('image')?->getUrl('preview') ?? '' }}')"></span>
                                             </a>
                                         @else
-                                            <span class="avatar me-2 rounded" style="background-image: url('{{ asset('images/cardboard-box.png')}}')"></span>
+                                            <span class="avatar me-2 rounded"
+                                                  style="background-image: url('{{ asset('images/cardboard-box.png')}}')"></span>
                                         @endif
 
                                     </div>
@@ -64,12 +66,14 @@
                                 </div>
                             </div>
 
-                            <div class="datagrid-item">
-                                <div class="datagrid-title">Note</div>
-                                <div class="datagrid-content">
-                                    {{ $product->note }}
+                            @if($product->note)
+                                <div class="datagrid-item">
+                                    <div class="datagrid-title">Note</div>
+                                    <div class="datagrid-content">
+                                        {{ $product->note }}
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

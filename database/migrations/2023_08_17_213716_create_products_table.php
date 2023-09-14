@@ -19,8 +19,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('code')->nullable();
 
-            $table->bigInteger('available_inventory')->default(0);
-            $table->bigInteger('times_sold')->default(0);
+            $table->bigInteger('available_inventory')
+                ->default(0);
+
+            $table->bigInteger('times_sold')
+                ->default(0);
 
             $table->unsignedBigInteger('default_inventory_id')
                 ->nullable();

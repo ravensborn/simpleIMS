@@ -30,4 +30,11 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Inventory::class);
     }
+
+    public function profit(): int
+    {
+        $inventory = $this->getAttribute('inventory');
+
+        return ($this->price - $inventory->cost) * $this->quantity;
+    }
 }

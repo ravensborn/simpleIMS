@@ -24,7 +24,7 @@ class ProductInventoryForm extends Form
     public string $date = '';
 
     #[Rule('nullable|string|max:100000', as: 'note')]
-    public string $note = '';
+    public string|null $note = '';
 
     private array $attributes = ['cost', 'price', 'quantity', 'date', 'note'];
 
@@ -42,7 +42,6 @@ class ProductInventoryForm extends Form
 
     public function store($productId): void
     {
-
         $this->validate();
 
         $product = Product::find($productId);
@@ -62,6 +61,8 @@ class ProductInventoryForm extends Form
                 'default_inventory_id' => $model->id,
             ]);
         }
+
+        $this->model = $product;
     }
 
     public function update(): void

@@ -14,7 +14,7 @@ class OrderForm extends Form
     public string $customer_id = '';
 
     #[Rule('nullable|string|max:100000', as: 'note')]
-    public string $note = '';
+    public string|null $note = '';
 
     private array $attributes = ['customer_id', 'note'];
 
@@ -29,7 +29,6 @@ class OrderForm extends Form
 
     public function store(): void
     {
-
         $this->validate();
 
         $model = new $this->model;
@@ -39,12 +38,13 @@ class OrderForm extends Form
             'number' => $this->model::generateNumber()
         ]);
 
-        $model->create($array);
+        $this->model = $model->create($array);
     }
 
     public function update(): void
     {
         $this->validate();
+
         $this->model?->update($this->only($this->attributes));
     }
 

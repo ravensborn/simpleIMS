@@ -4,13 +4,13 @@
 
         <div class="row">
             <div class="col">
-                <h3>Manage Orders</h3>
-            </div>
-            <div class="col text-end">
-                <a href="{{ route('orders.create') }}" class="btn btn-primary">
-                    <i class="bi bi-plus-lg me-2"></i>
-                    New Order
-                </a>
+                <h3>
+                    <a href="{{ route('customers.index') }}">Manage Customers</a>
+                    &nbsp;/&nbsp;
+                    <a href="{{ route('customers.show', $customer->id) }}">{{ $customer->name }}</a>
+                    &nbsp;/&nbsp;
+                    Orders
+                </h3>
             </div>
         </div>
 
@@ -18,17 +18,14 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Order List</h3>
+                        <h3 class="card-title">{{ $customer->name }}'s Order List</h3>
                     </div>
-
                     <div class="card-body border-bottom py-3">
                         <div class="d-flex">
 
                             <div>
                                 <label for="search" class="form-label">Search</label>
-                                <input type="search" id="search" class="form-control form-control-rounded"
-                                       wire:model.live="search"
-                                       placeholder="Filter table...">
+                                <input type="search" id="search" class="form-control form-control-rounded" wire:model.live="search" placeholder="Filter table...">
                             </div>
 
                         </div>
@@ -40,7 +37,6 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Serial No.</th>
-                                <th>Customer</th>
                                 <th>Items</th>
                                 <th>Total</th>
                                 <th>Paid</th>
@@ -61,10 +57,6 @@
                                     <td>
                                         {{ $order->number }}
                                     </td>
-                                    <td>
-                                        <a href="{{ route('customers.show', $order->customer_id) }}">{{ $order->customer->name }}</a>
-                                    </td>
-
                                     <td class="text-center">{{ number_format($order->orderItems->count()) }}</td>
                                     <td class="text-center">${{ number_format($order->total, 2) }}</td>
                                     <td class="text-center">${{ number_format($order->paid, 2) }}</td>
@@ -131,7 +123,9 @@
                     </div>
 
                 </div>
+
             </div>
+
         </div>
     </div>
 </div>

@@ -67,6 +67,9 @@
                                     <td>{{ $customer->created_at->format('Y-m-d / h:i A') }}</td>
                                     <td>
                                         <div class="btn-list flex-nowrap">
+                                            <a class="btn" href="{{ route('customers.orders', $customer->id) }}">
+                                                Orders
+                                            </a>
                                             <div class="dropdown">
                                                 <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Actions

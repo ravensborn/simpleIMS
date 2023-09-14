@@ -60,6 +60,7 @@ class ProductForm extends Form
                 ->toMediaCollection('image');
         }
 
+        $this->model = $model;
     }
 
     /**

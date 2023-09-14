@@ -51,8 +51,8 @@ class OrderItemForm extends Form
 
     public function store(): void
     {
-
         $this->validate();
+
         $model = new $this->model;
 
         $array = array_merge($this->only($this->attributes), [
@@ -66,6 +66,7 @@ class OrderItemForm extends Form
         $this->product->syncInventories();
         $this->product->increment('times_sold');
 
+        $this->model = $model;
     }
 
 }

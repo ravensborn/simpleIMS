@@ -66,6 +66,12 @@ class Order extends Model
         return $this->total - $this->paid;
     }
 
+    public function profit(): int {
+        return $this->orderItems->sum(function ($item) {
+            return $item->profit();
+        });
+    }
+
     public function syncTotal(): void
     {
         $sum = 0;

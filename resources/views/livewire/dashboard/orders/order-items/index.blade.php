@@ -326,24 +326,23 @@
                         <h3 class="card-title">Details</h3>
                     </div>
                     <div class="card-body">
-                        <div class="datagrid">
-
+                        <div class="datagrid" style=" !important; grid-template-columns: auto auto auto auto;">
                             <div class="datagrid-item">
                                 <div class="datagrid-title">Customer</div>
-                                <div class="datagrid-content">{{ $order->customer->name }}</div>
+                                <div class="datagrid-content"><a href="{{ route('customers.show', $order->customer_id) }}">{{ $order->customer->name }}</a></div>
                             </div>
                             <div class="datagrid-item">
-                                <div class="datagrid-title">Order Total</div>
+                                <div class="datagrid-title">Total</div>
                                 <div class="datagrid-content">${{ number_format($order->total, 2) }}</div>
                             </div>
                             <div class="datagrid-item">
-                                <div class="datagrid-title">Order Paid</div>
+                                <div class="datagrid-title">Paid</div>
                                 <div class="datagrid-content">${{ number_format($order->paid, 2) }}</div>
                             </div>
                             <div class="datagrid-item">
                                 <div class="datagrid-title">Amount Due</div>
                                 <div class="datagrid-content">
-                                    ${{ number_format($order->total - $order->paid, 2) }}</div>
+                                    ${{ number_format($order->amount_due, 2) }}</div>
                             </div>
                         </div>
                     </div>

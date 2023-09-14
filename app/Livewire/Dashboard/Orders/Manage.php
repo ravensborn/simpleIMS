@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Dashboard\Orders\OrderItems;
+namespace App\Livewire\Dashboard\Orders;
 
 use App\Livewire\Forms\OrderItemForm;
 use App\Livewire\Forms\OrderPaymentForm;
@@ -13,7 +13,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Index extends Component
+class Manage extends Component
 {
     use WithPagination, LivewireAlert;
 
@@ -246,29 +246,47 @@ class Index extends Component
 
         if ($orderItem) {
 
-            //Return the stocks only if the product and inventory still exists.
+            //If there were payments made, we don't allow item deleting,
 
-            if ($orderItem->inventory_id && $orderItem->product_id) {
+            if(!$this->orderPayments->count()) {
 
-                $inventory = Inventory::find($orderItem->inventory_id);
-                $inventory->increment('quantity', $orderItem->quantity);
+                //Return the stocks only if the product and inventory still exists.
 
-                $product = Product::find($orderItem->product_id);
-                $product->syncInventories();
-                $product->decrement('times_sold');
+                if ($orderItem->inventory_id && $orderItem->product_id) {
+
+                    $inventory = Inventory::find($orderItem->inventory_id);
+                    $inventory->increment('quantity', $orderItem->quantity);
+
+                    $product = Product::find($orderItem->product_id);
+                    $product->syncInventories();
+                    $product->decrement('times_sold');
+                }
+
+                $orderItem->delete();
+
+                $this->alert('success', 'Item successfully deleted.', [
+                    'position' => 'top-end',
+                    'timer' => 5000,
+                    'toast' => true,
+                ]);
+
+                $this->loadOrder();
+
+            } else {
+
+                $this->alert('error', 'Cannot delete an item while order has payments.', [
+                    'position' => 'top-end',
+                    'timer' => 5000,
+                    'toast' => true,
+                ]);
+
             }
 
-            $orderItem->delete();
 
-            $this->alert('success', 'Item successfully deleted.', [
-                'position' => 'top-end',
-                'timer' => 5000,
-                'toast' => true,
-            ]);
 
         }
 
-        $this->loadOrder();
+
     }
 
     public function render()

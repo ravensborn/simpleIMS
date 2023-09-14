@@ -57,10 +57,12 @@ class Index extends Component
         $products = Product::orderBy('created_at', 'desc');
 
         if ($this->search) {
+
             $this->resetPage();
-            $products = $products->where('name', 'LIKE', '%' . $this->search . '%')
+
+            $products->where('name', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('code', 'LIKE', '%' . $this->search . '%')
-                ->orWhere('number',  $this->search);
+                ->orWhere('number', $this->search);
         }
 
         $products = $products->paginate(5);

@@ -2,21 +2,97 @@
 
 namespace App\Livewire\Dashboard\Customers;
 
+use App\Livewire\Forms\OrderPaymentForm;
 use App\Models\Customer;
+use App\Models\Order;
+use Illuminate\Support\Collection;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+
 
 class Show extends Component
 {
+    use LivewireAlert;
+
     public Customer $customer;
+
+    public int $customerProfit = 0;
+
+    public bool $customerQuickPayCard = false;
+    public string $payAmount;
+    public OrderPaymentForm $orderPaymentForm;
+
+    public Collection $fulfilledOrders;
+
+    public function showCustomerPayCard(): void
+    {
+        $this->customerQuickPayCard = !$this->customerQuickPayCard;
+        $this->payAmount = '';
+    }
+
+    public function payCustomerDueAmount(): void
+    {
+        $validated = $this->validate([
+            'payAmount' => 'required|numeric'
+        ]);
+
+        $payAmount = $validated['payAmount'];
+
+        $this->fulfilledOrders = collect();
+
+        if ($payAmount <= $this->customer->amount_due) {
+
+            $unfulfilledOrders = $this->customer->orders()->whereIn('status', [
+                Order::STATUS_INITIAL, Order::STATUS_PENDING
+            ])->get();
+
+            foreach ($unfulfilledOrders as $order) {
+                $amountDue = $order->amount_due;
+                $this->orderPaymentForm->order_id = $order->id;
+
+                if ($payAmount > 0) {
+                    $this->orderPaymentForm->amount = min($payAmount, $amountDue);
+                    $payAmount -= $this->orderPaymentForm->amount;
+                    $this->orderPaymentForm->store();
+                    $order->syncPayments();
+
+                    $this->fulfilledOrders->push([
+                        'order_id' => $order->id,
+                        'payment' => $this->orderPaymentForm->model,
+                        'amount' => $this->orderPaymentForm->amount
+                    ]);
+
+                } else {
+                    break;
+                }
+            }
+
+            $this->payAmount = '';
+
+            $this->getProfit();
+            $this->customer = Customer::find($this->customer->id);
+
+            $this->alert('success', 'Successfully added payments.');
+
+        } else {
+
+            $this->alert('error', 'Pay amount cannot be more than customer amount due.');
+        }
+    }
 
     public function mount(Customer $customer): void
     {
-        $this->customer = $customer;
+
+    }
+
+    public function getProfit(): void
+    {
+
+        $this->customerProfit = $this->customer->profit();
     }
 
     public function render()
     {
-
         return view('livewire.dashboard.customers.show')
             ->extends('layouts.base')
             ->section('content');

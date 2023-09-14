@@ -29,8 +29,10 @@
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="">
-                                        <label for="name" class="form-label">Name <small
-                                                class="text-red">*</small></label>
+                                        <label for="name" class="form-label">
+                                            Name
+                                            <small class="text-red">*</small>
+                                        </label>
                                         <input type="text" id="name" class="form-control" wire:model="form.name">
                                         @error('form.name')
                                         <div class="text-danger">{{ $message }}</div> @enderror
@@ -53,7 +55,10 @@
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="mt-3">
-                                        <label for="email_address" class="form-label">E-Mail Address</label>
+                                        <label for="email_address" class="form-label">
+                                            E-Mail Address
+                                            <small class="text-muted">(optional)</small>
+                                        </label>
                                         <input type="text" id="email_address" class="form-control"
                                                wire:model="form.email_address">
                                         @error('form.email_address')
@@ -62,7 +67,10 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="mt-3">
-                                        <label for="address" class="form-label">Address</label>
+                                        <label for="address" class="form-label">
+                                            Address
+                                            <small class="text-red">*</small>
+                                        </label>
                                         <input type="text" id="address" class="form-control" wire:model="form.address">
                                         @error('form.address')
                                         <div class="text-danger">{{ $message }}</div> @enderror
@@ -73,7 +81,10 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mt-3">
-                                        <label for="note" class="form-label">Note</label>
+                                        <label for="note" class="form-label">
+                                            Note
+                                            <small class="text-muted">(optional)</small>
+                                        </label>
                                         <textarea id="note" cols="30" rows="10" class="form-control"
                                                   wire:model="form.note"></textarea>
                                         @error('form.note')

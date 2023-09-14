@@ -59,12 +59,14 @@
                                 <div class="datagrid-content">${{ number_format($order->amount_due, 2) }}</div>
                             </div>
 
-                            <div class="datagrid-item">
-                                <div class="datagrid-title">Note</div>
-                                <div class="datagrid-content">
-                                    {{ $order->note }}
+                            @if($order->note)
+                                <div class="datagrid-item">
+                                    <div class="datagrid-title">Note</div>
+                                    <div class="datagrid-content">
+                                        {{ $order->note }}
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -29,7 +29,7 @@ class OrderPaymentForm extends Form
             'number' => $this->model::generateNumber(),
         ]);
 
-        $model->create($array);
+        $this->model = $model->create($array);
     }
 
 }

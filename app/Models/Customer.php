@@ -21,6 +21,12 @@ class Customer extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function profit(): int {
+        return $this->orders->sum(function ($order) {
+            return $order->profit();
+        });
+    }
+
     public function getAmountDueAttribute() {
 
         return $this->orders->sum(function ($order) {

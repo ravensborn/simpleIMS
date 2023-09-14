@@ -41,8 +41,6 @@ return new class extends Migration
             $table->json('product')
                 ->comment('For report reasons just in case the inventory item was deleted.');
 
-
-
             $table->integer('quantity');
             $table->decimal('price', 15, 2);
 

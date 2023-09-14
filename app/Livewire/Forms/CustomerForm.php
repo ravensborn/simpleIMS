@@ -17,13 +17,13 @@ class CustomerForm extends Form
     public string $phone_number = '';
 
     #[Rule('nullable|string|max:256', as: 'email address')]
-    public string $email_address = '';
+    public string|null $email_address = '';
 
     #[Rule('required|string|max:256', as: 'address')]
     public string $address = '';
 
     #[Rule('nullable|string|max:100000', as: 'note')]
-    public string $note = '';
+    public string|null $note = '';
 
     private array $attributes = ['name', 'phone_number', 'email_address', 'address', 'note'];
 
@@ -41,11 +41,9 @@ class CustomerForm extends Form
 
     public function store(): void
     {
-
         $this->validate();
-
         $model = new $this->model;
-        $model->create($this->only($this->attributes));
+        $this->model = $model->create($this->only($this->attributes));
     }
 
     public function update(): void
