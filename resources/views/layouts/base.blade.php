@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>{{ config('env.APP_NAME') }}</title>
+
+    <link rel="stylesheet" id="sweetalert-dark-theme" href="{{ asset('theme/empty.css') }}"/>
+
     <script>
         const theme = localStorage.getItem('theme');
-        if (theme) document.documentElement.setAttribute("data-bs-theme", theme);
+        
+        if (theme) {
+            const darkThemeAssetUrl = theme === 'dark' ? 'https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5.0.15/dark.min.css' : '{{ asset('theme/empty.css') }}';
+            const sweetalertDarkThemeElement = document.head.querySelector('#sweetalert-dark-theme');
+            sweetalertDarkThemeElement.setAttribute('href', darkThemeAssetUrl);
+            document.documentElement.setAttribute("data-bs-theme", theme)
+        }
     </script>
 
     <!-- CSS files -->
@@ -22,7 +31,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}">
 
-{{--        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5.0.15/dark.min.css" />--}}
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
@@ -103,7 +112,7 @@
                                     d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6"/>
                                 <path d="M9 17v1a3 3 0 0 0 6 0v-1"/>
                             </svg>
-{{--                            <span class="badge bg-red"></span>--}}
+                            {{--                            <span class="badge bg-red"></span>--}}
                         </a>
                         <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
                             <div class="card">
@@ -114,7 +123,8 @@
                                     <div class="list-group-item">
                                         <div class="row align-items-center">
                                             <div class="col-auto"><span
-                                                    class="status-dot status-dot-animated bg-success d-block"></span></div>
+                                                    class="status-dot status-dot-animated bg-success d-block"></span>
+                                            </div>
                                             <div class="col text-truncate">
                                                 <a href="#" class="text-body d-block">Notification</a>
                                                 <div class="d-block text-muted text-truncate mt-n1">
@@ -221,26 +231,26 @@
                             </a>
                         </li>
 
-{{--                        <li class="nav-item">--}}
-{{--                            <a class="nav-link" href="{{ route('home') }}">--}}
-{{--                                <span class="nav-link-icon d-md-none d-lg-inline-block">--}}
-{{--<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-pie" width="24" height="24"--}}
-{{--     viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">--}}
-{{--  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>--}}
-{{--  <path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8"/>--}}
-{{--  <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5"/>--}}
-{{--</svg>                            </span>--}}
-{{--                                <span class="nav-link-title">--}}
-{{--                                    Reports--}}
-{{--                                </span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="nav-item">--}}
+                        {{--                            <a class="nav-link" href="{{ route('home') }}">--}}
+                        {{--                                <span class="nav-link-icon d-md-none d-lg-inline-block">--}}
+                        {{--<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-pie" width="24" height="24"--}}
+                        {{--     viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">--}}
+                        {{--  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>--}}
+                        {{--  <path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8"/>--}}
+                        {{--  <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5"/>--}}
+                        {{--</svg>                            </span>--}}
+                        {{--                                <span class="nav-link-title">--}}
+                        {{--                                    Reports--}}
+                        {{--                                </span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
 
 
                     </ul>
                     <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
                         <div>
-                             <span class="badge bg-success-lt">{{ config('env.APP_EXPIRY_DATE') }}</span>
+                            <span class="badge bg-success-lt">{{ config('env.APP_EXPIRY_DATE') }}</span>
                             &nbsp;/&nbsp;
                             <span class="badge bg-secondary-lt">
                                  App Ver.: {{ config('env.APP_VERSION') }}
@@ -297,14 +307,24 @@
             const currentTheme = document.documentElement.getAttribute('data-bs-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-bs-theme', newTheme);
+
+            const darkThemeAssetUrl = newTheme === 'dark' ? 'https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5.0.15/dark.min.css' : '{{ asset('theme/empty.css') }}';
+            const sweetalertDarkThemeElement = document.head.querySelector('#sweetalert-dark-theme');
+            sweetalertDarkThemeElement.setAttribute('href', darkThemeAssetUrl);
+
             localStorage.setItem('theme', newTheme);
         });
     });
 </script>
 
+<script>
+
+
+</script>
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<x-livewire-alert::scripts />
+<x-livewire-alert::scripts/>
 
 </body>
 </html>
