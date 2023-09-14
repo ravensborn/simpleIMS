@@ -7,7 +7,7 @@
                         <h3>
                             <a href="{{ route('orders.index') }}">Manage Orders</a>
                             &nbsp;/&nbsp;
-                            <a href="{{ route('orders.order-items.index', $order->id) }}">
+                            <a href="{{ route('orders.manage.index', $order->id) }}">
                                 {{ $order->number }}
                             </a>
                             &nbsp;/&nbsp;
