@@ -19,13 +19,23 @@ class Create extends Component
 
     public function updatedCustomerSearchQuery(): void
     {
+        $this->resetValidation();
+
         if($this->customerSearchQuery) {
 
-            $this->suggestedCustomers = Customer::where('name', 'LIKE', '%' . $this->customerSearchQuery. '%')
-                ->orWhere('phone_number', 'LIKE', '%' . $this->customerSearchQuery. '%')
-                ->limit(5)
-                ->get()
-                ->toArray();
+            if($this->customerSearchQuery == 'd.') {
+
+                $this->suggestedCustomers = Customer::orderBy('name')
+                    ->get()
+                    ->toArray();
+
+            } else {
+                $this->suggestedCustomers = Customer::where('name', 'LIKE', '%' . $this->customerSearchQuery. '%')
+                    ->orWhere('phone_number', 'LIKE', '%' . $this->customerSearchQuery. '%')
+                    ->limit(5)
+                    ->get()
+                    ->toArray();
+            }
 
         } else {
 
@@ -35,8 +45,9 @@ class Create extends Component
         $this->suggestedCustomersSelectBox = true;
     }
 
-    public function selectCustomer(Customer $customer): void
+    public function selectCustomer($customerId): void
     {
+        $customer = Customer::find($customerId);
         $this->form->customer_id = $customer->id;
         $this->selectedCustomerString = $customer->name;
         $this->suggestedCustomersSelectBox = false;

@@ -158,9 +158,8 @@
                                                     <label for="product_id" class="form-label">
                                                         Product
                                                         <small class="text-danger">*</small>
-                                                        @if((bool) $productSearchQuery & $suggestedProductsSelectBox)
-                                                            <span class="badge bg-green-lt">Searching...</span>
-                                                        @endif
+                                                        <span class="badge bg-warning-lt" wire:loading wire:target="productSearchQuery">Loading Data...</span>
+
                                                     </label>
                                                     @if(!$orderItemForm->product_id)
                                                         <input type="text" id="product_id" class="form-control"
@@ -184,7 +183,9 @@
                                                     @error('orderItemForm.product_id')
                                                     <div class="text-danger">{{ $message }}</div> @enderror
 
-                                                    <div @class(['dropdown-menu dropdown-menu-demo' => true, 'show' => ((bool) $productSearchQuery & $suggestedProductsSelectBox)])>
+                                                    <div
+                                                        @style(['overflow-y: scroll; height: 210px;' => ($productSearchQuery && $suggestedProductsSelectBox && count($suggestedProducts))])
+                                                        @class(['dropdown-menu dropdown-menu-demo mt-2' => true, 'show' => ((bool) $productSearchQuery & $suggestedProductsSelectBox)])>
                                                         @if($suggestedProductsSelectBox)
                                                             @forelse($suggestedProducts as $product)
                                                                 <a href="#" class="dropdown-item"
@@ -329,7 +330,9 @@
                         <div class="datagrid" style=" !important; grid-template-columns: auto auto auto auto;">
                             <div class="datagrid-item">
                                 <div class="datagrid-title">Customer</div>
-                                <div class="datagrid-content"><a href="{{ route('customers.show', $order->customer_id) }}">{{ $order->customer->name }}</a></div>
+                                <div class="datagrid-content"><a
+                                        href="{{ route('customers.show', $order->customer_id) }}">{{ $order->customer->name }}</a>
+                                </div>
                             </div>
                             <div class="datagrid-item">
                                 <div class="datagrid-title">Total</div>

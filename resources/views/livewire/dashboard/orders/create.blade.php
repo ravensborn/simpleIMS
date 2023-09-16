@@ -30,9 +30,9 @@
                                         <label for="customer_id" class="form-label">
                                             Customer
                                             <small class="text-danger">*</small>
-                                            @if((bool) $customerSearchQuery & $suggestedCustomersSelectBox)
-                                            <span class="badge bg-green-lt">Searching...</span>
-                                            @endif
+                                            <span wire:loading class="badge bg-warning-lt" wire:target="customerSearchQuery">
+                                                Loading Data...
+                                            </span>
                                         </label>
                                         @if(!$form->customer_id)
                                             <input type="text" id="customer_id" class="form-control"
@@ -42,13 +42,15 @@
                                                    wire:model="selectedCustomerString" disabled>
                                         @endif
                                         @error('form.customer_id')
-                                        <div class="text-danger">{{ $message }}</div> @enderror
-
-                                        <div @class([ 'dropdown-menu dropdown-menu-demo' => true, 'show' => ((bool) $customerSearchQuery & $suggestedCustomersSelectBox)])>
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                        <div
+                                            @style(['overflow-y: scroll; height: 210px;' => ($customerSearchQuery && $suggestedCustomersSelectBox && count($suggestedCustomers))])
+                                            @class([ 'dropdown-menu dropdown-menu-demo mt-2' => true, 'show' => ((bool) $customerSearchQuery & $suggestedCustomersSelectBox)])>
                                             @if($suggestedCustomersSelectBox)
                                                 @forelse($suggestedCustomers as $customer)
                                                     <a href="#" class="dropdown-item"
-                                                       wire:click="selectCustomer({{ $customer['id'] }}, '{{ $customer['name'] }}')">
+                                                       wire:click="selectCustomer({{ $customer['id'] }})">
                                                         <span class="avatar avatar-xs rounded me-2"
                                                               style="background-image: url('{{ asset('images/lighting.png') }}')"></span>
                                                         {{ $customer['name'] }} - {{ $customer['phone_number'] }}

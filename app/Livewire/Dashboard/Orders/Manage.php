@@ -70,21 +70,28 @@ class Manage extends Component
 
     public function updatedProductSearchQuery(): void
     {
+
+        $this->resetValidation();
+
         if ($this->productSearchQuery) {
 
+            if($this->productSearchQuery == 'd.') {
+
+                $suggestedProducts = Product::orderBy('name')->get();
+            } else {
+
 //            $this->suggestedProducts = Product::where('available_inventory', '>', 0)
-            $this->suggestedProducts = Product::where(function ($q) {
+                $suggestedProducts = Product::where(function ($q) {
                     $q->where('name', 'LIKE', '%' . $this->productSearchQuery . '%')
                         ->orWhere('code', 'LIKE', '%' . $this->productSearchQuery . '%')
                         ->orWhere('number', $this->productSearchQuery);
-                })
-                ->limit(5)
-                ->get()
-                ->map(function ($product) {
-                    $product['image'] = $product->getCover('preview');
-                    return $product;
-                })
-                ->toArray();
+                })->limit(5)->get();
+            }
+
+            $this->suggestedProducts = $suggestedProducts->map(function ($product) {
+                $product['image'] = $product->getCover('preview');
+                return $product;
+            })->toArray();
 
         } else {
 
@@ -281,12 +288,7 @@ class Manage extends Component
                 ]);
 
             }
-
-
-
         }
-
-
     }
 
     public function render()
