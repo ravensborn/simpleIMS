@@ -17,7 +17,7 @@ class ProductInventoryForm extends Form
     #[Rule('required|numeric', as: 'price')]
     public string $price = '';
 
-    #[Rule('required|numeric', as: 'quantity')]
+    #[Rule('required|integer', as: 'quantity')]
     public string $quantity = '';
 
     #[Rule('required|date', as: 'date')]

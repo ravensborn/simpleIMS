@@ -16,7 +16,7 @@ class CustomerForm extends Form
     #[Rule('required|string|max:256', as: 'phone number')]
     public string $phone_number = '';
 
-    #[Rule('nullable|string|max:256', as: 'email address')]
+    #[Rule('nullable|email|string|max:256', as: 'email address')]
     public string|null $email_address = '';
 
     #[Rule('required|string|max:256', as: 'address')]
