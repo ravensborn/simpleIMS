@@ -151,7 +151,7 @@
                         <div id="item-order-accordion" class="accordion-collapse collapse" wire:ignore.self>
                             <div class="accordion-body pt-0">
                                 <div class="card-body">
-                                    <form wire:submit="storeOrderItem">
+                                    <form wire:submit.prevent="storeOrderItem">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="">
@@ -239,6 +239,7 @@
                                                             <small class="text-danger">*</small>
                                                         </label>
                                                         <input type="text" id="price" class="form-control"
+                                                               wire:keydown.enter.prevent="storeOrderItem"
                                                                wire:model="orderItemForm.price">
                                                         @error('orderItemForm.price')
                                                         <div class="text-danger">{{ $message }}</div> @enderror
@@ -252,6 +253,7 @@
                                                             <small class="text-danger">*</small>
                                                         </label>
                                                         <input type="text" id="quantity" class="form-control"
+                                                               wire:keydown.enter.prevent="storeOrderItem"
                                                                wire:model="orderItemForm.quantity">
                                                         @error('orderItemForm.quantity')
                                                         <div class="text-danger">{{ $message }}</div> @enderror
