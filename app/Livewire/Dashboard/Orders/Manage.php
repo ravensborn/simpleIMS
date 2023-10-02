@@ -37,7 +37,6 @@ class Manage extends Component
     public string $selectedProductString = '';
     public int $itemIdToBeDeleted = 0;
 
-    public bool $createOrderItemAccordion = false;
 
     public function storePayment(): void
     {
@@ -294,7 +293,7 @@ class Manage extends Component
     public function render()
     {
 
-        return view('livewire.dashboard.orders.order-items.index')->extends('layouts.base')->section('content');
+        return view('livewire.dashboard.orders.manage')->extends('layouts.base')->section('content');
     }
 
 }

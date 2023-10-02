@@ -106,7 +106,9 @@
                                     <td>
                                         <div class="btn-list flex-nowrap">
                                             <a class="btn btn-icon"
-                                               href="{{ route('orders.order-payments.invoice', ['order' => $order_id, 'orderPayment' => $item->id]) }}">
+                                               href="{{ route('orders.order-payments.invoice', ['order' => $order_id, 'orderPayment' => $item->id]) }}"
+                                               target="_blank"
+                                               onclick="window.open(this.href, '_blank', 'width=500,height=500'); return false;">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                      class="icon icon-tabler icon-tabler-printer" width="24" height="24"
                                                      viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -158,22 +160,23 @@
                                                     <label for="product_id" class="form-label">
                                                         Product
                                                         <small class="text-danger">*</small>
-                                                        <span class="badge bg-warning-lt" wire:loading wire:target="productSearchQuery">Loading Data...</span>
+                                                        <span class="badge bg-warning-lt" wire:loading
+                                                              wire:target="productSearchQuery">Loading Data...</span>
 
                                                     </label>
                                                     @if(!$orderItemForm->product_id)
                                                         <input type="text" id="product_id" class="form-control"
-                                                               wire:model.live="productSearchQuery">
+                                                               wire:model.live="productSearchQuery" tabindex="1">
                                                     @else
                                                         <div class="input-group">
-                                                <span class="input-group-text">
-                                                     <img style="width: 32px; height: 32px;"
-                                                          class="img-fluid object-cover"
-                                                          src="{{ $this->orderItemForm->product->getCover('preview') }}"
-                                                          alt="">
-                                                </span>
+                                                            <span class="input-group-text">
+                                                                <img style="width: 32px; height: 32px;"
+                                                                     class="img-fluid object-cover"
+                                                                     src="{{ $this->orderItemForm->product->getCover('preview') }}"
+                                                                     alt="">
+                                                            </span>
                                                             <input type="text" id="product_id" class="form-control"
-                                                                   wire:model="selectedProductString" disabled>
+                                                                   wire:model="selectedProductString" tabindex="1" disabled>
                                                             <button class="btn" style="width: 70px;"
                                                                     wire:click.prevent="resetNewOrderItemForm()">
                                                                 Reset
@@ -185,13 +188,13 @@
 
                                                     <div
                                                         @style(['overflow-y: scroll; height: 210px;' => ($productSearchQuery && $suggestedProductsSelectBox && count($suggestedProducts))])
-                                                        @class(['dropdown-menu dropdown-menu-demo mt-2' => true, 'show' => ((bool) $productSearchQuery & $suggestedProductsSelectBox)])>
+                                                        @class(['dropdown-menu bg-body dropdown-menu-demo w-100 mt-2' => true, 'show' => ((bool) $productSearchQuery & $suggestedProductsSelectBox)])>
                                                         @if($suggestedProductsSelectBox)
                                                             @forelse($suggestedProducts as $product)
-                                                                <a href="#" class="dropdown-item"
+                                                                <a href="#" class="dropdown-item m-2"
+                                                                   tabindex="{{ $loop->iteration + 2}}"
                                                                    wire:click="selectProduct({{ $product['id'] }})">
-                                                        <span class="avatar avatar-xs rounded me-2"
-                                                              style="background-image: url('{{ $product['image'] }}')"></span>
+                                                                    <span class="avatar avatar-xs rounded me-2" style="background-image: url('{{ $product['image'] }}')"></span>
                                                                     @if($product['code'])
                                                                         {{ $product['code'] . ' / ' . $product['name'] }}
                                                                     @else
@@ -218,9 +221,9 @@
                                                                 wire:change="inventoryUpdated"
                                                                 id="inventory_id">
                                                             <option value="0"> -- Select an option --</option>
-                                                            @foreach($inventories as $inventory)
+                                                            @foreach($inventories as $index => $inventory)
                                                                 <option value="{{ $inventory->id }}">
-                                                                    {{ $inventory->number . ' / ' . $inventory->quantity . ' / $' . $inventory->cost }}
+                                                                    {{ $inventory->number . ' / ' . $inventory->quantity . ' / ' . $inventory->cost }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -349,6 +352,26 @@
                                 <div class="datagrid-content">
                                     ${{ number_format($order->amount_due, 2) }}</div>
                             </div>
+                            <div class="datagrid-item">
+                                <div class="datagrid-title">Print Order</div>
+                                <div class="datagrid-content">
+                                    <a class="btn btn-icon" href="{{ route('orders.invoice', $order->id) }}"
+                                       target="_blank"
+                                       onclick="window.open(this.href, '_blank', 'width=500,height=500'); return false;">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             class="icon icon-tabler icon-tabler-printer" width="24" height="24"
+                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                             fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2"></path>
+                                            <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4"></path>
+                                            <path
+                                                d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -359,4 +382,42 @@
         </div>
 
     </div>
+
+
+    <script>
+
+        document.addEventListener('keydown', logKey);
+        document.addEventListener('keydown', test);
+
+        function test(e) {
+            if (e.keyCode === 84) {
+                document.getElementById("quantity").focus();
+            }
+        }
+
+        function logKey(e) {
+            let key = 83;
+            if (e.keyCode === key && e['ctrlKey']) {
+
+                let element = document.getElementById('product_id');
+                let collapse = document.getElementsByClassName('collapse');
+
+                if (element && collapse) {
+
+                    if (element) {
+
+                        new bootstrap.Collapse(collapse[1], {
+                            toggle: true
+                        });
+
+                        element.focus();
+                    }
+                }
+
+                e.preventDefault();
+                return false;
+            }
+        }
+    </script>
+
 </div>
