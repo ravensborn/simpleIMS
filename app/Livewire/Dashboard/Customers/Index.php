@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Customers;
 
 use App\Models\Customer;
+use Illuminate\Support\Facades\DB;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -55,7 +56,11 @@ class Index extends Component
 
     public function render()
     {
-        $customers = Customer::query();
+        $customers = Customer::select('customers.*')
+            ->join('orders', 'customers.id', '=', 'orders.customer_id')
+            ->selectRaw('SUM(orders.total - orders.paid) as total_difference')
+            ->groupBy('customers.id')
+            ->orderByDesc('total_difference');
 
         if ($this->search) {
 

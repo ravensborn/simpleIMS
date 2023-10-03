@@ -41,7 +41,21 @@
                             <div class="datagrid-item">
                                 <div class="datagrid-title">Profile</div>
                                 <div class="datagrid-content">
-                                    <a href="{{ route('customers.print-details', $customer->id) }}">Print</a>
+                                    <a class="btn btn-icon" href="{{ route('customers.print-details', $customer->id) }}"
+                                       target="_blank"
+                                       onclick="window.open(this.href, '_blank', 'width=500,height=500'); return false;">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             class="icon icon-tabler icon-tabler-printer" width="24" height="24"
+                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                             fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2"></path>
+                                            <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4"></path>
+                                            <path
+                                                d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z"></path>
+                                        </svg>
+                                    </a>
                                 </div>
                             </div>
 
@@ -64,16 +78,30 @@
                             </div>
 
                             <div class="datagrid-item">
-                                <div class="datagrid-title">Profit</div>
+                                <div class="datagrid-title">
+                                    Revenue
+                                </div>
                                 <div class="datagrid-content" wire:init="getProfit()">
-                                    <span wire:loading wire:target="getProfit">
+
+                                     <span wire:loading wire:target="getProfit">
                                        <div class="spinner-border spinner-border-sm text-primary" role="status">
                                           <span class="visually-hidden">Loading...</span>
                                        </div>
                                     </span>
+
                                     <span wire:loading.remove wire:target="getProfit">
-                                         ${{ number_format($customerProfit, 2) }}
+
+                                         @if($showProfit)
+                                            <span>${{ number_format($customerProfit, 2) }}</span>
+                                        @else
+                                            <a href="#" wire:click.prevent="showCustomerProfit()">
+                                                Show
+                                            </a>
+                                        @endif
+
                                     </span>
+
+
 
                                 </div>
                             </div>
@@ -113,22 +141,8 @@
                                     <div class="text-red">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <hr>
                                 <div>
-                                    @if($fulfilledOrders)
-                                        <hr>
-                                        <div class="mb-1">
-                                            Affected orders
-                                        </div>
-                                        @foreach($fulfilledOrders as $item)
-
-                                            <a target="_blank"
-                                               href="{{ route('orders.order-payments.invoice', ['order' => $item['order_id'], 'orderPayment' => $item['payment']->id]) }}">
-                                                <span class="badge badge-primary mb-1"><i class="bi bi-printer"></i> Invoice - {{ $item['payment']->number }} - ${{ number_format($item['amount'], 2) }}</span>
-                                            </a>
-
-                                        @endforeach
-                                    @endif
-                                    <hr>
                                     <button class="btn btn-primary" wire:click.prevent="payCustomerDueAmount">
                                         Pay
                                         <span wire:loading wire:target="payCustomerDueAmount">
@@ -137,6 +151,72 @@
                                     </button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        @if($quickPayLogs->count())
+            <div class="row row-cards mt-1">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table table-vcenter card-table">
+                                <thead>
+                                <tr>
+                                    <th>Series</th>
+                                    <th>Date</th>
+                                    <th>Amount Due</th>
+                                    <th>Total Paid</th>
+                                    <th class="w-1"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @forelse($quickPayLogs as $log)
+
+                                    <tr>
+                                        <td>{{ $log->number }}</td>
+                                        <td>{{ $log->created_at->format('Y-m-d h:i A') }}</td>
+                                        <td class="text-secondary">
+                                            ${{ $log->amount_due_before_payment }}
+                                        </td>
+                                        <td class="text-secondary">
+                                            ${{ $log->amount_paid }}
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-icon"
+                                               href="{{ route('orders.quick-pay-logs.invoice', $log->id) }}"
+                                               target="_blank"
+                                               onclick="window.open(this.href, '_blank', 'width=500,height=500'); return false;">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                     class="icon icon-tabler icon-tabler-printer" width="24" height="24"
+                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path
+                                                        d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2"></path>
+                                                    <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4"></path>
+                                                    <path
+                                                        d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z"></path>
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">
+                                            There are no items at the moment.
+                                        </td>
+                                    </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
+
+                            <div class="mt-3">
+                                {{ $quickPayLogs->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

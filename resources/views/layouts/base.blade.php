@@ -8,14 +8,21 @@
     <title>{{ config('env.APP_NAME') }}</title>
 
     <link rel="stylesheet" id="sweetalert-dark-theme" href="{{ asset('theme/empty.css') }}"/>
+    <link rel="stylesheet" id="sweetalert-toast-dark-theme-patch" href="{{ asset('theme/empty.css') }}"/>
 
     <script>
         const theme = localStorage.getItem('theme');
-        
+
         if (theme) {
-            const darkThemeAssetUrl = theme === 'dark' ? 'https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5.0.15/dark.min.css' : '{{ asset('theme/empty.css') }}';
+
+            const sweetAlertDarkThemeAssetUrl = theme === 'dark' ? 'https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css' : '{{ asset('theme/empty.css') }}';
             const sweetalertDarkThemeElement = document.head.querySelector('#sweetalert-dark-theme');
-            sweetalertDarkThemeElement.setAttribute('href', darkThemeAssetUrl);
+            sweetalertDarkThemeElement.setAttribute('href', sweetAlertDarkThemeAssetUrl);
+
+            const sweetAlertToastPatchAssetUrl = theme === 'dark' ? '{{ asset('theme/sweet-alert-toast-dark-theme-patch.css') }}' : '{{ asset('theme/empty.css') }}';
+            const sweetalertToastPathDarkThemeElement = document.head.querySelector('#sweetalert-toast-dark-theme-patch');
+            sweetalertToastPathDarkThemeElement.setAttribute('href', sweetAlertToastPatchAssetUrl);
+
             document.documentElement.setAttribute("data-bs-theme", theme)
         }
     </script>
@@ -311,6 +318,11 @@
             const darkThemeAssetUrl = newTheme === 'dark' ? 'https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5.0.15/dark.min.css' : '{{ asset('theme/empty.css') }}';
             const sweetalertDarkThemeElement = document.head.querySelector('#sweetalert-dark-theme');
             sweetalertDarkThemeElement.setAttribute('href', darkThemeAssetUrl);
+
+            const sweetAlertToastPatchAssetUrl = newTheme === 'dark' ? '{{ asset('theme/sweet-alert-toast-dark-theme-patch.css') }}' : '{{ asset('theme/empty.css') }}';
+            console.log(sweetAlertToastPatchAssetUrl);
+            const sweetalertToastPathDarkThemeElement = document.head.querySelector('#sweetalert-toast-dark-theme-patch');
+            sweetalertToastPathDarkThemeElement.setAttribute('href', sweetAlertToastPatchAssetUrl);
 
             localStorage.setItem('theme', newTheme);
         });

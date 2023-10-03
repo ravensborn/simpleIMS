@@ -30,7 +30,7 @@ class OrderItemForm extends Form
 
     #[Locked]
     public Product|null $product = null;
-    #[Locked]
+   
     public Inventory|null $inventory = null;
 
     private array $attributes = ['order_id', 'product_id', 'inventory_id', 'price', 'quantity'];

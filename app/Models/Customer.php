@@ -34,4 +34,11 @@ class Customer extends Model
         });
 
     }
+
+    public function quickPayLogs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+
+        return $this->hasMany(QuickPayLog::class);
+
+    }
 }
