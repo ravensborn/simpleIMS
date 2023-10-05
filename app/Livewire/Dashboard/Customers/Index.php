@@ -57,10 +57,11 @@ class Index extends Component
     public function render()
     {
         $customers = Customer::select('customers.*')
-            ->join('orders', 'customers.id', '=', 'orders.customer_id')
-            ->selectRaw('SUM(orders.total - orders.paid) as total_difference')
+            ->leftJoin('orders', 'customers.id', '=', 'orders.customer_id')
+            ->selectRaw('SUM(COALESCE(orders.total, 0) - COALESCE(orders.paid, 0)) as total_difference')
             ->groupBy('customers.id')
             ->orderByDesc('total_difference');
+
 
         if ($this->search) {
 

@@ -4,7 +4,9 @@
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <p>
-                    Your subscription has ended, please contact <a href="tel:+9647507534867">+9647507534867</a> to
+                    Your subscription has ended, please contact <a
+                        href="tel:{{ config('env.SUPPORT_PHONE_NUMBER') }}">{{ config('env.SUPPORT_PHONE_NUMBER') }}</a>
+                    to
                     renew.
                 </p>
             </div>

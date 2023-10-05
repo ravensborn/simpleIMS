@@ -15,9 +15,11 @@
         <div class="row row-cards">
             <div class="col-12">
                 <div class="card">
+
                     <div class="card-header">
                         <h3 class="card-title">{{ $customer->name }}'s details</h3>
                     </div>
+
                     <div class="card-body">
                         <div class="datagrid">
                             <div class="datagrid-item">
@@ -138,13 +140,13 @@
                                     <label for="pay_amount" class="form-label">Pay Amount</label>
                                     <input type="text" id="pay_amount" class="form-control" wire:model="payAmount">
                                     @error('payAmount')
-                                    <div class="text-red">{{ $message }}</div>
+                                    <div class="text-red mt-1">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <hr>
                                 <div>
                                     <button class="btn btn-primary" wire:click.prevent="payCustomerDueAmount">
-                                        Pay
+                                        Pay Now
                                         <span wire:loading wire:target="payCustomerDueAmount">
                                         - Saving...
                                     </span>
@@ -161,6 +163,13 @@
             <div class="row row-cards mt-1">
                 <div class="col-lg-12">
                     <div class="card">
+
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Quick Pay History
+                            </h3>
+                        </div>
+
                         <div class="table-responsive">
                             <table class="table table-vcenter card-table">
                                 <thead>

@@ -2,6 +2,7 @@ version: "3.8"
 services:
   app:
     container_name: ${APP_CONTAINER_NAME}
+    restart: on-failure
     build:
       context: .
       target: php
@@ -21,6 +22,7 @@ services:
 
   database:
     container_name: ${DB_CONTAINER_NAME}
+    restart: on-failure
     image: mysql:8.0
     environment:
       - MYSQL_DATABASE=${DB_DATABASE}
