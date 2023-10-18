@@ -53,7 +53,9 @@
                             @forelse($products as $product)
                                 <tr>
                                     <td>
-                                        {{ $loop->iteration }}
+                                         <span class="text-secondary">
+                                             {{ ($products->currentpage()-1) * $products->perpage() + $loop->index + 1 }}
+                                         </span>
                                     </td>
                                     <td>
                                         <a href="{{ route('products.show', $product->id) }}" class="text-reset">

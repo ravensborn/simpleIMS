@@ -45,7 +45,11 @@
                             <tbody class="table-tbody">
                             @forelse($inventories as $inventory)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                         <span class="text-secondary">
+                                             {{ ($inventories->currentpage()-1) * $inventories->perpage() + $loop->index + 1 }}
+                                         </span>
+                                    </td>
                                     <td>{{ $inventory->number }}</td>
                                     <td> {{ number_format($inventory->cost, 2) }}</td>
                                     <td> {{ number_format($inventory->price, 2) }}</td>

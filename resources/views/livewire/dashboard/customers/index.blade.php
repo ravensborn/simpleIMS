@@ -25,7 +25,8 @@
 
                             <div>
                                 <label for="search" class="form-label">Search</label>
-                                <input type="search" id="search" class="form-control form-control-rounded" wire:model.live="search" placeholder="Filter table...">
+                                <input type="search" id="search" class="form-control form-control-rounded"
+                                       wire:model.live="search" placeholder="Filter table...">
                             </div>
 
                         </div>
@@ -51,7 +52,9 @@
                             @forelse($customers as $customer)
                                 <tr>
                                     <td>
-                                        {{ $loop->iteration }}
+                                         <span class="text-secondary">
+                                             {{ ($customers->currentpage()-1) * $customers->perpage() + $loop->index + 1 }}
+                                         </span>
                                     </td>
                                     <td>
                                         <a href="{{ route('customers.show', $customer->id) }}">
@@ -71,17 +74,21 @@
                                                 Orders
                                             </a>
                                             <div class="dropdown">
-                                                <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <button class="btn dropdown-toggle align-text-top"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
                                                     Actions
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end" style="">
-                                                    <a class="dropdown-item" href="{{ route('customers.show', $customer->id) }}">
+                                                    <a class="dropdown-item"
+                                                       href="{{ route('customers.show', $customer->id) }}">
                                                         Details
                                                     </a>
-                                                    <a class="dropdown-item" href="{{ route('customers.edit', $customer->id) }}">
+                                                    <a class="dropdown-item"
+                                                       href="{{ route('customers.edit', $customer->id) }}">
                                                         Edit
                                                     </a>
-                                                    <a class="dropdown-item" wire:click="triggerDeleteItem({{ $customer->id }})">
+                                                    <a class="dropdown-item"
+                                                       wire:click="triggerDeleteItem({{ $customer->id }})">
                                                         Delete
                                                     </a>
                                                 </div>

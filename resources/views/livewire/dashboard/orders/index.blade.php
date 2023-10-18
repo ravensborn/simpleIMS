@@ -56,7 +56,9 @@
                             @forelse($orders as $order)
                                 <tr>
                                     <td>
-                                        {{ $loop->iteration }}
+                                         <span class="text-secondary">
+                                             {{ ($orders->currentpage()-1) * $orders->perpage() + $loop->index + 1 }}
+                                         </span>
                                     </td>
                                     <td>
                                         {{ $order->number }}
