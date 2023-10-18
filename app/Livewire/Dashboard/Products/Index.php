@@ -65,7 +65,7 @@ class Index extends Component
                 ->orWhere('number', $this->search);
         }
 
-        $products = $products->paginate(5);
+        $products = $products->paginate(10);
 
         return view('livewire.dashboard.products.index', [
             'products' => $products,

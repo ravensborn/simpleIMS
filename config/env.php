@@ -7,6 +7,8 @@ return [
     'APP_ALLOWED_USERS' => env('APP_ALLOWED_USERS', 1),
     'APP_EXPIRY_DATE' => env('APP_EXPIRY_DATE', today()),
 
+    'INITIAL_ADMIN_EMAIL' => env('INITIAL_ADMIN_EMAIL', 'admin@example.com'),
+
     'SYS_PRODUCT_PREFIX' => env('SYS_PRODUCT_PREFIX', 'PRD'),
     'SYS_ORDER_PREFIX' => env('SYS_ORDER_PREFIX', 'ORD'),
     'SYS_INVENTORY_PREFIX' => env('SYS_INVENTORY_PREFIX', 'INV'),

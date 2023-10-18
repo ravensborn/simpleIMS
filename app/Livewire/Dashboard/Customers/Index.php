@@ -71,7 +71,7 @@ class Index extends Component
                 ->orWhere('phone_number', 'LIKE', '%' . $this->search . '%');
         }
 
-        $customers = $customers->paginate(5);
+        $customers = $customers->paginate(10);
 
         return view('livewire.dashboard.customers.index', [
             'customers' => $customers,
