@@ -44,8 +44,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/migrate', [MainController::class, 'migrate']);
-
 Auth::routes(['register' => false, 'logout' => false]);
 
 Route::get('/logout', function () {
