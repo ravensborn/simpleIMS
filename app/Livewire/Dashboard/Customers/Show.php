@@ -32,17 +32,19 @@ class Show extends Component
         $this->payAmount = '';
     }
 
-    public function showCustomerProfit() {
+    public function showCustomerProfit(): void
+    {
         $this->showProfit = !$this->showProfit;
     }
 
     public function payCustomerDueAmount(): void
     {
         $validated = $this->validate([
-            'payAmount' => 'required|numeric'
+            'payAmount' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/'
         ]);
 
         $payAmount = $validated['payAmount'];
+
 
         $fulfilledOrders = collect();
 
