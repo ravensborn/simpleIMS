@@ -54,6 +54,7 @@ class MainController extends Controller
                 'code' => $i->code,
                 'name' => $i->name,
                 'note' => null,
+                'created_at' => $i->created_at
             ]);
 
            if($i->quantity) {
@@ -120,12 +121,15 @@ class MainController extends Controller
                $total += ($invoiceTotal - $i->discount);
 
                $paid += $i->payment;
-
            }
 
            $legacyPayments = \App\Models\LegacyModels\Payment::where('customer_id', $legacyCustomer->id);
 
            $paid += $legacyPayments->sum('amount');
+
+           if(($total - $paid) < 0) {
+               continue;
+           }
 
            $orderArray = [
                'number' => Order::generateNumber(),
@@ -133,7 +137,7 @@ class MainController extends Controller
                'customer_id' => $legacyCustomer->id,
                'total' => $total,
                'paid' => $paid,
-               'created_at'=> $invoices->first()->created_at,
+               'created_at' => $invoices->first()->created_at,
            ];
 
            $order = Order::create($orderArray);
