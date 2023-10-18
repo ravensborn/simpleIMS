@@ -13,13 +13,13 @@ class CustomerForm extends Form
     #[Rule('required|string|max:256', as: 'name')]
     public string $name = '';
 
-    #[Rule('required|string|max:256', as: 'phone number')]
+    #[Rule('nullable|string|max:256', as: 'phone number')]
     public string $phone_number = '';
 
     #[Rule('nullable|email|string|max:256', as: 'email address')]
     public string|null $email_address = '';
 
-    #[Rule('required|string|max:256', as: 'address')]
+    #[Rule('nullable|string|max:256', as: 'address')]
     public string $address = '';
 
     #[Rule('nullable|string|max:100000', as: 'note')]

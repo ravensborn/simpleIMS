@@ -292,8 +292,9 @@ class Manage extends Component
 
     public function render()
     {
-
-        return view('livewire.dashboard.orders.manage')->extends('layouts.base')->section('content');
+        return view('livewire.dashboard.orders.manage')
+            ->extends('layouts.base')
+            ->section('content');
     }
 
 }

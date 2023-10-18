@@ -195,11 +195,14 @@
                                                                    tabindex="{{ $loop->iteration + 2}}"
                                                                    wire:click="selectProduct({{ $product['id'] }})">
                                                                     <span class="avatar avatar-xs rounded me-2" style="background-image: url('{{ $product['image'] }}')"></span>
-                                                                    @if($product['code'])
-                                                                        {{ $product['code'] . ' / ' . $product['name'] }}
-                                                                    @else
-                                                                        {{ $product['name'] }}
-                                                                    @endif
+                                                                    <span @class(['text-danger' => !$product['available_inventory']])>
+
+                                                                        @if($product['code'])
+                                                                            {{ $product['code'] . ' / ' . $product['name'] }}
+                                                                        @else
+                                                                            {{ $product['name'] }}
+                                                                        @endif
+                                                                    </span>
                                                                 </a>
                                                             @empty
                                                                 <a href="" class="dropdown-item">
@@ -211,6 +214,39 @@
 
                                                 </div>
                                             </div>
+
+
+                                            @if($orderItemForm->inventory_id)
+
+                                                <div class="col-2">
+                                                    <div class="mt-3">
+                                                        <label for="quantity" class="form-label">
+                                                            QTY.
+                                                            <small class="text-danger">*</small>
+                                                        </label>
+                                                        <input type="text" id="quantity" class="form-control"
+                                                               wire:keydown.enter.prevent="storeOrderItem"
+                                                               wire:model="orderItemForm.quantity">
+                                                        @error('orderItemForm.quantity')
+                                                        <div class="text-danger">{{ $message }}</div> @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mt-3">
+                                                        <label for="price" class="form-label">
+                                                            Price ($)
+                                                            <small class="text-danger">*</small>
+                                                        </label>
+                                                        <input type="text" id="price" class="form-control"
+                                                               wire:keydown.enter.prevent="storeOrderItem"
+                                                               wire:model="orderItemForm.price">
+                                                        @error('orderItemForm.price')
+                                                        <div class="text-danger">{{ $message }}</div> @enderror
+                                                    </div>
+                                                </div>
+
+                                            @endif
+
                                             @if($orderItemForm->product_id)
                                                 <div class="col-6">
                                                     <div class="mt-3">
@@ -231,38 +267,6 @@
                                                         <div class="text-danger">{{ $message }}</div> @enderror
                                                     </div>
                                                 </div>
-                                            @endif
-
-                                            @if($orderItemForm->inventory_id)
-
-                                                <div class="col-4">
-                                                    <div class="mt-3">
-                                                        <label for="price" class="form-label">
-                                                            Price ($)
-                                                            <small class="text-danger">*</small>
-                                                        </label>
-                                                        <input type="text" id="price" class="form-control"
-                                                               wire:keydown.enter.prevent="storeOrderItem"
-                                                               wire:model="orderItemForm.price">
-                                                        @error('orderItemForm.price')
-                                                        <div class="text-danger">{{ $message }}</div> @enderror
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-2">
-                                                    <div class="mt-3">
-                                                        <label for="quantity" class="form-label">
-                                                            QTY.
-                                                            <small class="text-danger">*</small>
-                                                        </label>
-                                                        <input type="text" id="quantity" class="form-control"
-                                                               wire:keydown.enter.prevent="storeOrderItem"
-                                                               wire:model="orderItemForm.quantity">
-                                                        @error('orderItemForm.quantity')
-                                                        <div class="text-danger">{{ $message }}</div> @enderror
-                                                    </div>
-                                                </div>
-
                                             @endif
 
                                             <div class="mt-3 border-top pt-3">

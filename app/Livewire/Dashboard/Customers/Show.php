@@ -5,29 +5,35 @@ namespace App\Livewire\Dashboard\Customers;
 use App\Livewire\Forms\OrderPaymentForm;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\QuickPayLog;
 use Illuminate\Support\Collection;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 
 class Show extends Component
 {
-    use LivewireAlert;
+    use LivewireAlert, WithPagination;
 
     public Customer $customer;
 
     public int $customerProfit = 0;
 
     public bool $customerQuickPayCard = false;
+
+    public bool $showProfit = false;
     public string $payAmount;
     public OrderPaymentForm $orderPaymentForm;
-
-    public Collection $fulfilledOrders;
 
     public function showCustomerPayCard(): void
     {
         $this->customerQuickPayCard = !$this->customerQuickPayCard;
         $this->payAmount = '';
+    }
+
+    public function showCustomerProfit() {
+        $this->showProfit = !$this->showProfit;
     }
 
     public function payCustomerDueAmount(): void
@@ -38,7 +44,7 @@ class Show extends Component
 
         $payAmount = $validated['payAmount'];
 
-        $this->fulfilledOrders = collect();
+        $fulfilledOrders = collect();
 
         if ($payAmount <= $this->customer->amount_due) {
 
@@ -47,7 +53,9 @@ class Show extends Component
             ])->get();
 
             foreach ($unfulfilledOrders as $order) {
+
                 $amountDue = $order->amount_due;
+
                 $this->orderPaymentForm->order_id = $order->id;
 
                 if ($payAmount > 0) {
@@ -56,10 +64,9 @@ class Show extends Component
                     $this->orderPaymentForm->store();
                     $order->syncPayments();
 
-                    $this->fulfilledOrders->push([
-                        'order_id' => $order->id,
+                    $fulfilledOrders->push([
+                        'order' => $order,
                         'payment' => $this->orderPaymentForm->model,
-                        'amount' => $this->orderPaymentForm->amount
                     ]);
 
                 } else {
@@ -67,7 +74,18 @@ class Show extends Component
                 }
             }
 
+            $customerAmountDue = $this->customer->amount_due;
+            $this->customer->quickPayLogs()->create([
+                'number' => QuickPayLog::generateNumber(),
+                'orders' => $fulfilledOrders,
+                'amount_due_before_payment' => $customerAmountDue,
+                'amount_paid' => $this->payAmount,
+                'remaining' => $customerAmountDue - $this->payAmount,
+            ]);
+
+
             $this->payAmount = '';
+            $this->customerQuickPayCard = false;
 
             $this->getProfit();
             $this->customer = Customer::find($this->customer->id);
@@ -82,18 +100,23 @@ class Show extends Component
 
     public function mount(Customer $customer): void
     {
-
     }
 
     public function getProfit(): void
     {
-
         $this->customerProfit = $this->customer->profit();
     }
 
     public function render()
     {
-        return view('livewire.dashboard.customers.show')
+
+        $quickPayLogs = $this->customer->quickPayLogs()
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
+
+        return view('livewire.dashboard.customers.show', [
+            'quickPayLogs' => $quickPayLogs
+        ])
             ->extends('layouts.base')
             ->section('content');
     }

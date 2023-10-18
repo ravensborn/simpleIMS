@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard\Customers;
 
 use App\Models\Customer;
+use Illuminate\Support\Facades\DB;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -55,7 +56,12 @@ class Index extends Component
 
     public function render()
     {
-        $customers = Customer::query();
+        $customers = Customer::select('customers.*')
+            ->leftJoin('orders', 'customers.id', '=', 'orders.customer_id')
+            ->selectRaw('SUM(COALESCE(orders.total, 0) - COALESCE(orders.paid, 0)) as total_difference')
+            ->groupBy('customers.id')
+            ->orderByDesc('total_difference');
+
 
         if ($this->search) {
 
@@ -65,7 +71,7 @@ class Index extends Component
                 ->orWhere('phone_number', 'LIKE', '%' . $this->search . '%');
         }
 
-        $customers = $customers->paginate(5);
+        $customers = $customers->paginate(10);
 
         return view('livewire.dashboard.customers.index', [
             'customers' => $customers,

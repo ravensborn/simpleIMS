@@ -7,7 +7,7 @@ use App\Models\OrderItem;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class OrderSeeder extends Seeder
+class OrderFakeSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\MainController;
 use App\Livewire\Dashboard\AppExpired;
 
 use App\Livewire\Dashboard\Home;
@@ -19,6 +18,7 @@ use App\Livewire\Dashboard\Orders\Invoice as OrderInvoice;
 use App\Livewire\Dashboard\Orders\Manage as OrderManage;
 use App\Livewire\Dashboard\Orders\Show as OrderShow;
 use App\Livewire\Dashboard\Orders\OrderPayments\Invoice as OrderPaymentInvoice;
+use App\Livewire\Dashboard\Orders\QuickPayLog\Invoice as OrderQuickPayInvoice;
 
 use App\Livewire\Dashboard\Products\Create as ProductCreate;
 use App\Livewire\Dashboard\Products\Edit as ProductEdit;
@@ -43,8 +43,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/migrate', [MainController::class, 'migrate']);
 
 Auth::routes(['register' => false, 'logout' => false]);
 
@@ -95,12 +93,16 @@ Route::middleware(['auth', 'checkSubscription'])->group(function () {
         Route::get('/{order}/edit', OrderEdit::class)->name('edit');
         Route::get('/{order}/invoice', OrderInvoice::class)->name('invoice');
 
+        Route::prefix('{quickPayLog}/quick-pay-logs')->as('quick-pay-logs.')->group(function () {
+            Route::get('/invoice', OrderQuickPayInvoice::class)->name('invoice');
+        });
+
         Route::prefix('{order}/manage')->as('manage.')->group(function () {
             Route::get('/', OrderManage::class)->name('index');
         });
 
-        Route::prefix('{order}/payments/{orderPayment}/invoice')->as('order-payments.')->group(function () {
-            Route::get('/', OrderPaymentInvoice::class)->name('invoice');
+        Route::prefix('{order}/payments/{orderPayment}')->as('order-payments.')->group(function () {
+            Route::get('/invoice', OrderPaymentInvoice::class)->name('invoice');
         });
 
     });

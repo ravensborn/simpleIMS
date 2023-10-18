@@ -68,7 +68,7 @@ class Index extends Component
                 });
         }
 
-        $orders = $orders->paginate(5);
+        $orders = $orders->paginate(10);
 
         return view('livewire.dashboard.orders.index', [
             'orders' => $orders,

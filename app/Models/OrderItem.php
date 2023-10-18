@@ -35,6 +35,14 @@ class OrderItem extends Model
     {
         $inventory = $this->getAttribute('inventory');
 
-        return ($this->price - $inventory->cost) * $this->quantity;
+
+        $cost = 0;
+
+        if (property_exists($inventory, 'cost')) {
+            $cost = $inventory->cost;
+
+        }
+
+        return ($this->price - $cost) * $this->quantity;
     }
 }
