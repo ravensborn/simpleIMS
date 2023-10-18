@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use App\Livewire\Dashboard\AppExpired;
 
 use App\Livewire\Dashboard\Home;
@@ -43,6 +44,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::get('/start-migrate', [MainController::class, 'migrate']);
+
 
 Auth::routes(['register' => false, 'logout' => false]);
 
