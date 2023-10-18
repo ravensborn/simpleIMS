@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\OrderPayment;
 use App\Models\Product;
+use Database\Seeders\InitialSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\In;
 
@@ -133,7 +134,7 @@ class MainController extends Controller
 
            $orderArray = [
                'number' => Order::generateNumber(),
-               'user_id' => auth()->user()->id,
+               'user_id' => 1,
                'customer_id' => $legacyCustomer->id,
                'total' => $total,
                'paid' => $paid,
@@ -170,10 +171,8 @@ class MainController extends Controller
     }
 
     public function createUser() {
-        \App\Models\User::factory()->create([
-            'name' => 'Yad',
-            'email' => 'yad@example.com',
-        ]);
+        $seeder = new InitialSeeder;
+        $seeder->run();
     }
 
     public function migrate()
