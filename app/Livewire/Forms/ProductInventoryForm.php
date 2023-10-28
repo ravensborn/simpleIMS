@@ -36,7 +36,7 @@ class ProductInventoryForm extends Form
         $this->cost = $model->cost;
         $this->price = $model->price;
         $this->quantity = $model->quantity;
-        $this->date = $model->date;
+        $this->date = $model->date->format('Y-m-d');
         $this->note = $model->note;
     }
 

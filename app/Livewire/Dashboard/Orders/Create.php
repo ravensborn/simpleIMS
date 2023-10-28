@@ -53,6 +53,17 @@ class Create extends Component
         $this->suggestedCustomersSelectBox = false;
     }
 
+    public function resetCustomer(): void
+    {
+        $this->resetValidation();
+        $this->form->customer_id = '';
+        $this->suggestedCustomers = [];
+        $this->suggestedCustomersSelectBox = false;
+        $this->customerSearchQuery = "";
+        $this->selectedCustomerString = "";
+    }
+
+
     public function store(): void
     {
         $this->form->store();

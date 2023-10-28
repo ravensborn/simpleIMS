@@ -40,7 +40,7 @@ class Manage extends Component
 
     public function storePayment(): void
     {
-        if(((int) $this->orderPaymentForm->amount + $this->order->paid) > $this->order->total) {
+        if(((float) $this->orderPaymentForm->amount + $this->order->paid) > $this->order->total) {
             $this->alert('error', 'Amount cannot be larger than order total.');
         } else {
             $this->orderPaymentForm->order_id = $this->order_id;

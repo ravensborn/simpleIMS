@@ -1,37 +1,31 @@
 <?php
 
 use App\Livewire\Dashboard\AppExpired;
-
-use App\Livewire\Dashboard\Home;
-
 use App\Livewire\Dashboard\Customers\Create as CustomerCreate;
 use App\Livewire\Dashboard\Customers\Edit as CustomerEdit;
 use App\Livewire\Dashboard\Customers\Index as CustomerIndex;
 use App\Livewire\Dashboard\Customers\Orders as CustomerOrders;
 use App\Livewire\Dashboard\Customers\PrintDetails as CustomerPrintDetails;
 use App\Livewire\Dashboard\Customers\Show as CustomerShow;
-
+use App\Livewire\Dashboard\Home;
 use App\Livewire\Dashboard\Orders\Create as OrderCreate;
 use App\Livewire\Dashboard\Orders\Edit as OrderEdit;
 use App\Livewire\Dashboard\Orders\Index as OrderIndex;
-use App\Livewire\Dashboard\Orders\Invoice as OrderInvoice;
+use App\Livewire\Dashboard\Orders\Invoices\Invoice as OrderInvoice;
 use App\Livewire\Dashboard\Orders\Manage as OrderManage;
+use App\Livewire\Dashboard\Orders\OrderPayments\Invoices\Invoice as OrderPaymentInvoice;
+use App\Livewire\Dashboard\Orders\QuickPayLog\Invoices\Invoice as OrderQuickPayInvoice;
 use App\Livewire\Dashboard\Orders\Show as OrderShow;
-use App\Livewire\Dashboard\Orders\OrderPayments\Invoice as OrderPaymentInvoice;
-use App\Livewire\Dashboard\Orders\QuickPayLog\Invoice as OrderQuickPayInvoice;
-
 use App\Livewire\Dashboard\Products\Create as ProductCreate;
 use App\Livewire\Dashboard\Products\Edit as ProductEdit;
 use App\Livewire\Dashboard\Products\Index as ProductIndex;
-use App\Livewire\Dashboard\Products\Show as ProductShow;
-
 use App\Livewire\Dashboard\Products\Inventories\Create as ProductInventoryCreate;
 use App\Livewire\Dashboard\Products\Inventories\Edit as ProductInventoryEdit;
 use App\Livewire\Dashboard\Products\Inventories\Index as ProductInventoryIndex;
-
-
+use App\Livewire\Dashboard\Products\Show as ProductShow;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------

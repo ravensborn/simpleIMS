@@ -33,6 +33,7 @@
                                             <span wire:loading class="badge bg-warning-lt" wire:target="customerSearchQuery">
                                                 Loading Data...
                                             </span>
+
                                         </label>
                                         @if(!$form->customer_id)
                                             <input type="text" id="customer_id" class="form-control"
@@ -44,6 +45,11 @@
                                         @error('form.customer_id')
                                         <div class="text-danger">{{ $message }}</div>
                                         @enderror
+                                        @if($form->customer_id)
+                                            <div class="mt-1">
+                                                <a wire:click.prevent="resetCustomer()" href="#">Reset customer</a>
+                                            </div>
+                                        @endif
                                         <div
                                             @style(['overflow-y: scroll; height: 210px;' => ($customerSearchQuery && $suggestedCustomersSelectBox && count($suggestedCustomers))])
                                             @class([ 'dropdown-menu dropdown-menu-demo mt-2' => true, 'show' => ((bool) $customerSearchQuery & $suggestedCustomersSelectBox)])>
@@ -52,7 +58,7 @@
                                                     <a href="#" class="dropdown-item"
                                                        wire:click="selectCustomer({{ $customer['id'] }})">
                                                         <span class="avatar avatar-xs rounded me-2"
-                                                              style="background-image: url('{{ asset('images/lighting.png') }}')"></span>
+                                                              style="background-image: url('{{ asset(config('env.LOGO_ASSET_PATH')) }}')"></span>
                                                         {{ $customer['name'] }} - {{ $customer['phone_number'] }}
                                                     </a>
                                                 @empty

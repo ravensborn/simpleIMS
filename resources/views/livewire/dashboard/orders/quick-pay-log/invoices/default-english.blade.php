@@ -5,13 +5,16 @@
                 <div class="row g-2 align-items-center">
                     <div class="col">
                         <h3>
-                            <a href="{{ route('orders.index') }}">Manage Orders</a>
+                            <a href="{{ route('customers.index') }}">Manage Customers</a>
                             &nbsp;/&nbsp;
-                            <a href="{{ route('orders.manage.index', $order->id) }}">
-                                {{ $order->number }}
+                            <a href="{{ route('customers.show', $customer->id) }}">
+                                {{ $customer->name }}
                             </a>
                             &nbsp;/&nbsp;
-                            Invoice
+                            QuickPay
+                            &nbsp;/&nbsp;
+                            {{ $log->number }}
+
                         </h3>
                     </div>
                     <!-- Page title actions -->
@@ -39,81 +42,87 @@
                 <div class="card card-lg">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
-                                <p class="h3">{{ config('env.INVOICE_COMPANY_NAME') }}</p>
-                                <address>
-                                    {{ config('env.INVOICE_COMPANY_EMAIL') }}<br>
-                                    {{ config('env.INVOICE_COMPANY_PHONE') }}<br>
-                                    {{ config('env.INVOICE_COMPANY_ADDRESS') }}
-                                </address>
-                            </div>
-                            <div class="col-6 text-end">
-                                <h2>{{ $this->order->number }}</h2>
-                                <div>{{ $this->order->created_at->format('Y-m-d / h:i A') }}</div>
-                            </div>
-                            <div class="col-12 my-5">
+                            <div class="col-4 text-start">
                                 <div>
-                                    <p class="h3"> {{ $customer->name }}</p>
+                                    <p class="h2">{{ config('env.INVOICE_COMPANY_NAME') }}</p>
                                     <address>
-                                        @if($customer->email)
-                                            {{ $customer->email }}<br>
-                                        @endif
-                                        {{ $customer->phone_number  }}<br>
-                                        {{ $customer->address }}
-
+                                        <span class="fw-bold">E-Mail:</span> {{ config('env.INVOICE_COMPANY_EMAIL') }}
+                                        <br>
+                                        <span
+                                            class="fw-bold">Phone No.:</span> {{ config('env.INVOICE_COMPANY_PHONE') }}
+                                        <br>
+                                        <span
+                                            class="fw-bold">Address:</span> {{ config('env.INVOICE_COMPANY_ADDRESS') }}
                                     </address>
                                 </div>
                             </div>
+                            <div class="col-4 text-center">
+                                <div>
+                                    <p class="h2">{{ $customer->name }}</p>
+                                    <address>
+                                        <span class="fw-bold">E-Mail:</span> {{ $customer->email_address ?? '' }}
+                                        <br>
+                                        <span class="fw-bold">Phone No.:</span> {{ $customer->phone_number ?? '' }}
+                                        <br>
+                                        <span class="fw-bold">Address:</span> {{ $customer->address ?? '' }}
+                                    </address>
+                                </div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <img src="{{ asset(config('env.LOGO_ASSET_PATH')) }}"
+                                     class="mb-2"
+                                     style="width: 42px; height: auto;"
+                                     alt="Invoice Logo">
+                                <p class="fw-bold mb-0">{{ $this->log->number }}</p>
+                                <div>{{ $this->log->created_at->format('Y-m-d / h:i A') }}</div>
+                            </div>
+
                         </div>
                         <table class="table table-transparent table-responsive">
                             <thead>
                             <tr>
                                 <th class="text-center" style="width: 1%"></th>
-                                <th>Product</th>
-                                <th class="text-center" style="width: 1%">Qnt</th>
-                                <th class="text-end" style="width: 1%">Price</th>
-                                <th class="text-end" style="width: 1%">Total</th>
+                                <th>Order Number</th>
+                                <th class="text-end" style="width: 1%">Paid</th>
                             </tr>
                             </thead>
-                            @foreach($order->orderItems as $item)
+                            @foreach($log->orders as $order)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>
-                                        <p class="strong mb-1">{{ $item->product->name }}</p>
-                                        <div class="text-muted">{{ $item->inventory->number }}</div>
+                                        <p class="text-primary fst-italic strong mb-1">{{ $order->order->number }}</p>
                                     </td>
-                                    <td class="text-center">
-                                        {{ number_format($item->quantity) }}
+
+
+                                    <td class="text-end text-primary fst-italic" style="white-space: nowrap;">
+                                        ${{ number_format($order->payment->amount, 2) }}
                                     </td>
-                                    <td class="text-end">${{ number_format($item->price, 2) }}</td>
-                                    <td class="text-end">${{ number_format(($item->price * $item->quantity), 2) }}</td>
+
+
                                 </tr>
                             @endforeach
+
                             <tr>
-                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Total</td>
-                                <td class="font-weight-bold text-end" style="white-space: nowrap;">
-                                    <span class="fw-bold">${{ number_format($order->total, 2) }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Paid</td>
-                                <td class="font-weight-bold text-end" style="white-space: nowrap;">
-                                    <span class="fw-bold">${{ number_format($order->paid, 2) }}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Remaining</td>
+                                <td colspan="2" class="font-weight-bold text-uppercase text-end">Amount Due</td>
                                 <td class="font-weight-bold text-end" style="white-space: nowrap;">
                                     <span class="fw-bold">
-                                        ${{ number_format($order->amount_due, 2) }}
+                                        ${{ $log->amount_due_before_payment }}
                                     </span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4" class="font-weight-bold text-uppercase text-end">Customer Amt. Due</td>
+                                <td colspan="2" class="font-weight-bold text-uppercase text-end">Amount Paid</td>
                                 <td class="font-weight-bold text-end" style="white-space: nowrap;">
                                     <span class="fw-bold">
-                                        ${{ number_format($customer->amount_due, 2) }}
+                                        ${{ $log->amount_paid }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="font-weight-bold text-uppercase text-end">Customer Amt. Due</td>
+                                <td class="font-weight-bold text-end" style="white-space: nowrap;">
+                                    <span class="fw-bold">
+                                        ${{ $log->remaining }}
                                     </span>
                                 </td>
                             </tr>

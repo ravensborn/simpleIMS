@@ -14,7 +14,7 @@ class OrderPaymentForm extends Form
     #[Locked]
     public string $order_id = '';
 
-    #[Rule('required|numeric|gt:0', as: 'amount')]
+    #[Rule('required|numeric|gt:0|regex:/^\d+(\.\d{1,2})?$/', as: 'amount')]
     public string $amount = '';
 
     private array $attributes = ['amount'];

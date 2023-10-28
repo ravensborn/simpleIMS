@@ -313,7 +313,7 @@
                                             </div>
 
                                             <div class="mt-3 border-top pt-3">
-                                                <button @class([ 'btn btn-primary' => true]) wire:target="storePayment"
+                                                <button @class([ 'btn btn-primary' => true, 'disabled' => ($order->amount_due == 0)]) wire:target="storePayment"
                                                         wire:loading.attr="disabled">
                                                     <i class="bi bi-plus me-2"></i>
                                                     Add

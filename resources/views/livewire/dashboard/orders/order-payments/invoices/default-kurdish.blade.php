@@ -43,58 +43,71 @@
                 <div class="card card-lg">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
-                                <p class="h3">{{ config('env.INVOICE_COMPANY_NAME') }}</p>
-                                <address>
-                                    {{ config('env.INVOICE_COMPANY_EMAIL') }}<br>
-                                    {{ config('env.INVOICE_COMPANY_PHONE') }}<br>
-                                    {{ config('env.INVOICE_COMPANY_ADDRESS') }}
-                                </address>
+                            <div class="col-4 text-start">
+                                <div>
+                                    <p class="h2">{{ config('env.INVOICE_COMPANY_NAME') }}</p>
+                                    <address>
+                                        <span class="fw-bold">E-Mail:</span> {{ config('env.INVOICE_COMPANY_EMAIL') }}
+                                        <br>
+                                        <span
+                                            class="fw-bold">Phone No.:</span> {{ config('env.INVOICE_COMPANY_PHONE') }}
+                                        <br>
+                                        <span
+                                            class="fw-bold">Address:</span> {{ config('env.INVOICE_COMPANY_ADDRESS') }}
+                                    </address>
+                                </div>
                             </div>
-                            <div class="col-6 text-end">
-                                <h2>{{ $this->order->number }} &nbsp;/&nbsp; {{ $this->orderPayment->number }}</h2>
+                            <div class="col-4 text-center">
+                                <div>
+                                    <p class="h2">{{ $customer->name }}</p>
+                                    <address>
+                                        <span class="fw-bold">E-Mail:</span> {{ $customer->email_address ?? '' }}
+                                        <br>
+                                        <span class="fw-bold">Phone No.:</span> {{ $customer->phone_number ?? '' }}
+                                        <br>
+                                        <span class="fw-bold">Address:</span> {{ $customer->address ?? '' }}
+                                    </address>
+                                </div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <img src="{{ asset(config('env.LOGO_ASSET_PATH')) }}"
+                                     class="mb-2"
+                                     style="width: 42px; height: auto;"
+                                     alt="Invoice Logo">
+                                <p class="fw-bold mb-0">{{ $this->order->number }}
+                                    &nbsp;/&nbsp; {{ $this->orderPayment->number }}</p>
                                 <div>{{ $this->orderPayment->created_at->format('Y-m-d / h:i A') }}</div>
                             </div>
-                            <div class="col-12 my-5">
 
-                                <p class="h3"> {{ $customer->name }}</p>
-                                <address>
-                                    @if($customer->email)
-                                        {{ $customer->email }}<br>
-                                    @endif
-                                    {{ $customer->phone_number  }}<br>
-                                    {{ $customer->address }}
-
-                                </address>
-                            </div>
                         </div>
                         <table class="table table-transparent table-responsive">
                             <tbody>
                             <tr>
-                                <td class="font-weight-bold text-uppercase">Remaining Due</td>
                                 <td class="font-weight-bold" style="white-space: nowrap;">
-                                     <span class="fw-bold">${{ number_format($orderPayment->amount + $order->amount_due, 2) }}</span>
+                                    <span
+                                        class="fw-bold">${{ number_format($orderPayment->amount + $order->amount_due, 2) }}</span>
                                 </td>
+                                <td class="font-weight-bold text-end text-uppercase">بڕی قەرز</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bold text-uppercase">Paid</td>
                                 <td class="font-weight-bold" style="white-space: nowrap;">
                                     <span class="fw-bold">
                                         ${{ number_format($orderPayment->amount, 2) }}
                                     </span>
                                 </td>
+                                <td class="font-weight-bold text-end text-uppercase">بڕی پارەدان</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bold text-uppercase">Remaining</td>
                                 <td class="font-weight-bold" style="white-space: nowrap;">
                                     ${{ number_format($order->amount_due, 2) }}
                                 </td>
+                                <td class="font-weight-bold text-end text-uppercase">بڕی ماوە</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bold text-uppercase">Customer Amt. Due</td>
                                 <td class="font-weight-bold" style="white-space: nowrap;">
                                     ${{ number_format($customer->amount_due, 2) }}
                                 </td>
+                                <td class="font-weight-bold text-end text-uppercase">قەرزی کۆن</td>
                             </tr>
                             </tbody>
                         </table>

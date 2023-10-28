@@ -42,7 +42,7 @@
                                     <div class="mt-3 mt-md-0">
                                         <label for="phone_number" class="form-label">
                                             Phone Number
-                                            <small class="text-red">*</small>
+                                            <small class="text-muted">(optional)</small>
                                         </label>
                                         <input type="tel" id="phone_number" class="form-control"
                                                wire:model="form.phone_number">
@@ -69,7 +69,7 @@
                                     <div class="mt-3">
                                         <label for="address" class="form-label">
                                             Address
-                                            <small class="text-red">*</small>
+                                            <small class="text-muted">(optional)</small>
                                         </label>
                                         <input type="text" id="address" class="form-control" wire:model="form.address">
                                         @error('form.address')

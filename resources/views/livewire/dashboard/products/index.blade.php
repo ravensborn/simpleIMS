@@ -40,9 +40,9 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Product</th>
-                                <th>AV. Inventory</th>
-                                <th>Default Inventory</th>
-                                <th>Times Sold</th>
+                                <th title="Available Inventory">AV. Inv.</th>
+                                <th title="Default Inventory">Def. Inv.</th>
+                                <th title="Times Sold">Sold</th>
                                 <th>Note</th>
                                 <th>Created At</th>
                                 <th></th>
@@ -72,9 +72,9 @@
                                         </a>
                                     </td>
 
-                                    <td class="text-center">{{ number_format($product->available_inventory) }}</td>
-                                    <td class="text-center">{{ number_format($product->getDefaultInventoryQuantity()) }}</td>
-                                    <td class="text-center">{{ number_format($product->times_sold) }}</td>
+                                    <td style="width: 1%;" class="text-center">{{ number_format($product->available_inventory) }}</td>
+                                    <td style="width: 1%;" class="text-center">{{ number_format($product->getDefaultInventoryQuantity()) }}</td>
+                                    <td style="width: 1%;" class="text-center">{{ number_format($product->times_sold) }}</td>
                                     <td>{{ $product->note }}</td>
                                     <td>{{ $product->created_at->format('Y-m-d / h:i A') }}</td>
                                     <td>
