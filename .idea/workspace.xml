@@ -5,35 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29ad65e7-7270-481b-b20f-4af3181e62e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.fiona-store.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.fiona-store.docker" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.hiwaphone.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.hiwaphone.docker" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeception.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/Laravel_8_17_23__11_53_AM.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel-plugin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/simpleIMS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/simpleIMS.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/Create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/Create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/Invoices/Invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/Manage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/Manage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/OrderPayments/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/OrderPayments/Invoices/Invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/QuickPayLog/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/QuickPayLog/Invoices/Invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Livewire/Forms/OrderPaymentForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Forms/OrderPaymentForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Livewire/Forms/ProductInventoryForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Forms/ProductInventoryForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/env.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lighting.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lightning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/base.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/base.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard/customers/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard/customers/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/invoice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/invoices/default-english.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/manage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/manage.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/order-payments/invoice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/order-payments/invoices/default-english.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/quick-pay-log/invoice.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/quick-pay-log/invoices/default-english.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard/products/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard/products/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +169,7 @@
     "RunOnceActivity.laravel-idea.update-module-directories": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/yad/Development/Personal/simpleIMS/resources/views/livewire/dashboard/orders/quick-pay-log/invoices",
+    "last_opened_file_path": "/home/yad/Development/Personal/simpleIMS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -208,11 +180,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/quick-pay-log/invoices" />
       <recent name="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/order-payments/invoices" />
       <recent name="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/invoices" />
       <recent name="$PROJECT_DIR$/app/Livewire/Dashboard/Orders" />
-      <recent name="$PROJECT_DIR$/app/Livewire/Dashboard/Orders/QuickPayLog" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/invoices" />
@@ -237,7 +209,9 @@
       <workItem from="1698353114795" duration="1344000" />
       <workItem from="1698427837445" duration="2000" />
       <workItem from="1698482489899" duration="605000" />
-      <workItem from="1698526274585" duration="9462000" />
+      <workItem from="1698526274585" duration="9911000" />
+      <workItem from="1698579228015" duration="17000" />
+      <workItem from="1698579992227" duration="126000" />
     </task>
     <servers />
   </component>
