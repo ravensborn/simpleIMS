@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29ad65e7-7270-481b-b20f-4af3181e62e0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env.zanaphone.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.zanaphone.docker" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -211,7 +212,7 @@
       <workItem from="1698482489899" duration="605000" />
       <workItem from="1698526274585" duration="9911000" />
       <workItem from="1698579228015" duration="17000" />
-      <workItem from="1698579992227" duration="126000" />
+      <workItem from="1698579992227" duration="450000" />
     </task>
     <servers />
   </component>
