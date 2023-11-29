@@ -32,6 +32,17 @@
             @endforeach
         </div>
 
+        @if(\Carbon\Carbon::createFromDate(2023, 11, 29)->isToday())
+            <div class="row">
+                <div class="col">
+                    <hr>
+                    <button class="btn btn-primary" wire:click="reSyncOrderStatuses">
+                        Re-sync order statuses
+                    </button>
+                </div>
+            </div>
+        @endif
+
     </div>
 
 </div>

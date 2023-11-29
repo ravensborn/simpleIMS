@@ -5,10 +5,12 @@ namespace App\Livewire\Dashboard;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class Home extends Component
 {
+    use LivewireAlert;
 
     public array $cards = [];
 
@@ -48,11 +50,16 @@ class Home extends Component
             'title' => 'Customers',
             'data' => $customers->count(),
         ];
+    }
 
+    public function reSyncOrderStatuses(): void
+    {
 
+        Order::all()->each(function ($order) {
+            $order->syncPayments();
+        });
 
-
-
+        $this->alert('info', 'Finished syncing orders.');
     }
 
     public function mount(): void

@@ -61,12 +61,13 @@ class Order extends Model
         return $this->hasMany(OrderPayment::class)->orderBy('created_at', 'desc');
     }
 
-    public function getAmountDueAttribute() {
-
+    public function getAmountDueAttribute()
+    {
         return $this->total - $this->paid;
     }
 
-    public function profit(): int {
+    public function profit(): int
+    {
         return $this->orderItems->sum(function ($item) {
             return $item->profit();
         });
@@ -85,29 +86,42 @@ class Order extends Model
         ]);
     }
 
-    public function syncPayments(): void
+    public function isInitial(): bool
     {
-        $sum = 0;
-
-        foreach ($this->orderPayments as $item) {
-            $sum = $sum + $item->amount;
+        if ($this->orderItems->count() === 0 && $this->orderPayments->count() === 0) {
+            return true;
         }
 
-        if($sum != $this->total) {
-            $status = self::STATUS_PENDING;
+        return false;
+    }
+
+    public function syncPayments(): void
+    {
+        $paid = 0;
+
+        foreach ($this->orderPayments as $item) {
+            $paid = $paid + $item->amount;
+        }
+
+        if ($this->isInitial()) {
+            $status = self::STATUS_INITIAL;
         } else {
-            $status = self::STATUS_COMPLETED;
+            if (number_format($paid, 3) == number_format($this->total, 3)) {
+                $status = self::STATUS_COMPLETED;
+            } else {
+                $status = self::STATUS_PENDING;
+            }
         }
 
         $this->update([
             'status' => $status,
-            'paid' => $sum,
+            'paid' => $paid,
         ]);
     }
 
     public static function generateNumber(): string
     {
-        $lastCustomer =  self::orderBy('id', 'DESC')->first();
+        $lastCustomer = self::orderBy('id', 'DESC')->first();
         $lastCustomerId = $lastCustomer ? $lastCustomer->id : 0;
 
         $prefix = strtoupper(config('env.SYS_ORDER_PREFIX') . '_');

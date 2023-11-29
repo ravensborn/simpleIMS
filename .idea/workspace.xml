@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29ad65e7-7270-481b-b20f-4af3181e62e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.zanaphone.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.zanaphone.docker" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Livewire/Dashboard/Customers/Show.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Dashboard/Customers/Show.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Livewire/Dashboard/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Dashboard/Home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard/home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,22 +166,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.laravel-idea.update-module-directories": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/yad/Development/Personal/simpleIMS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.laravel-idea.update-module-directories&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yad/Development/Personal/simpleIMS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -212,7 +215,14 @@
       <workItem from="1698482489899" duration="605000" />
       <workItem from="1698526274585" duration="9911000" />
       <workItem from="1698579228015" duration="17000" />
-      <workItem from="1698579992227" duration="450000" />
+      <workItem from="1698579992227" duration="1059000" />
+      <workItem from="1698838141590" duration="56000" />
+      <workItem from="1700117991767" duration="1395000" />
+      <workItem from="1700167380214" duration="599000" />
+      <workItem from="1700253370188" duration="601000" />
+      <workItem from="1700301987553" duration="599000" />
+      <workItem from="1700338505543" duration="97000" />
+      <workItem from="1701279432598" duration="6555000" />
     </task>
     <servers />
   </component>

@@ -6,7 +6,6 @@ use App\Livewire\Forms\OrderPaymentForm;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\QuickPayLog;
-use Illuminate\Support\Collection;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -51,7 +50,7 @@ class Show extends Component
         if ($payAmount <= $this->customer->amount_due) {
 
             $unfulfilledOrders = $this->customer->orders()->whereIn('status', [
-                Order::STATUS_INITIAL, Order::STATUS_PENDING
+                Order::STATUS_PENDING
             ])->get();
 
             foreach ($unfulfilledOrders as $order) {
