@@ -6,10 +6,6 @@
     # Pull the latest changes
     sudo git pull
 
-    # Copy the .env file specific to the folder
-    echo "Copying env from ${ENV_FILE_NAME} to .env"
-    sudo cp "${ENV_FILE_NAME}" .env
-
     # Fixing ownership and permissions
     sudo chown -R yad:yad .
     sudo chmod -R 755 .

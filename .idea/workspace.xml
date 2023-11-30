@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29ad65e7-7270-481b-b20f-4af3181e62e0" name="Changes" comment="General improvements.">
+    <list default="true" id="29ad65e7-7270-481b-b20f-4af3181e62e0" name="Changes" comment="Added bash script for easier pulls.">
       <change beforePath="$PROJECT_DIR$/.env.fiona-store.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.fiona-store.docker" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env.hiwaphone.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.hiwaphone.docker" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.zanaphone.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.zanaphone.docker" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pull.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pull.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +222,7 @@
       <workItem from="1700301987553" duration="599000" />
       <workItem from="1700338505543" duration="97000" />
       <workItem from="1701279432598" duration="9418000" />
-      <workItem from="1701325920158" duration="572000" />
+      <workItem from="1701325920158" duration="1039000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed quick pay.">
       <option name="closed" value="true" />
@@ -240,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701325990309</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added bash script for easier pulls.">
+      <option name="closed" value="true" />
+      <created>1701326523188</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701326523188</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,6 +257,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed quick pay." />
     <MESSAGE value="General improvements." />
-    <option name="LAST_COMMIT_MESSAGE" value="General improvements." />
+    <MESSAGE value="Added bash script for easier pulls." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added bash script for easier pulls." />
   </component>
 </project>
