@@ -32,7 +32,7 @@
             @endforeach
         </div>
 
-        @if(\Carbon\Carbon::createFromDate(2023, 11, 29)->isToday())
+        @if(\Carbon\Carbon::createFromDate(2023, 11, 30)->isToday())
             <div class="row">
                 <div class="col">
                     <hr>
