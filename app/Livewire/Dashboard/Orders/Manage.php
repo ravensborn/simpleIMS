@@ -81,10 +81,10 @@ class Manage extends Component
 
 //            $this->suggestedProducts = Product::where('available_inventory', '>', 0)
                 $suggestedProducts = Product::where(function ($q) {
-                    $q->where('name', 'LIKE', '%' . $this->productSearchQuery . '%')
-                        ->orWhere('code', 'LIKE', '%' . $this->productSearchQuery . '%')
+                    $q->where('name', 'LIKE', '%' . trim($this->productSearchQuery) . '%')
+                        ->orWhere('code', 'LIKE', '%' . trim($this->productSearchQuery) . '%')
                         ->orWhere('number', $this->productSearchQuery);
-                })->limit(5)->get();
+                })->limit(25)->orderBy('available_inventory', 'desc')->get();
             }
 
             $this->suggestedProducts = $suggestedProducts->map(function ($product) {

@@ -41,6 +41,7 @@
                                 <th>Total</th>
                                 <th>Paid</th>
                                 <th>Amount Due</th>
+                                <th>Revenue</th>
                                 <th>Status</th>
                                 <th>Note</th>
                                 <th>Created At</th>
@@ -61,6 +62,9 @@
                                     <td class="text-center">${{ number_format($order->total, 2) }}</td>
                                     <td class="text-center">${{ number_format($order->paid, 2) }}</td>
                                     <td class="text-center">${{ number_format($order->amount_due, 2) }}</td>
+                                    <td class="text-center">
+                                        ${{ $order->profit()  }}
+                                    </td>
                                     <td>
                                         <div class="badge {{ $order->getBadgeColorByStatus()  }}">{{ ucfirst($order->status) }}</div>
                                     </td>

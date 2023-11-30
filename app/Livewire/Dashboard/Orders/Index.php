@@ -11,6 +11,8 @@ class Index extends Component
 {
     use WithPagination, LivewireAlert;
 
+    public array $orderProfitList = [];
+
     protected $listeners = [
         'deleteItem',
     ];
@@ -18,6 +20,18 @@ class Index extends Component
     public int $itemIdToBeDeleted = 0;
 
     public string $search = '';
+
+    public function processOrderProfit($orderId): void
+    {
+        $order = Order::find($orderId);
+
+        $this->orderProfitList[$order->id] = $order->profit();
+    }
+
+    public function getOrderProfit($orderId) {
+
+        return $this->orderProfitList[$orderId];
+    }
 
     public function triggerDeleteItem($item): void
     {

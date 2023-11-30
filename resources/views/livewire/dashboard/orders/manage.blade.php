@@ -9,6 +9,10 @@
                     {{ $order->number }}
                     &nbsp;/&nbsp;
                     Items
+                    &nbsp;/&nbsp;
+                   <span class="text-success">
+                        <a href="{{ route('customers.show', $order->customer_id) }}">{{ $order->customer->name }}</a>
+                   </span>
                 </h3>
             </div>
         </div>
@@ -187,7 +191,7 @@
                                                     <div class="text-danger">{{ $message }}</div> @enderror
 
                                                     <div
-                                                        @style(['overflow-y: scroll; height: 210px;' => ($productSearchQuery && $suggestedProductsSelectBox && count($suggestedProducts))])
+                                                        @style(['overflow-y: scroll; height: 510px;' => ($productSearchQuery && $suggestedProductsSelectBox && count($suggestedProducts))])
                                                         @class(['dropdown-menu bg-body dropdown-menu-demo w-100 mt-2' => true, 'show' => ((bool) $productSearchQuery & $suggestedProductsSelectBox)])>
                                                         @if($suggestedProductsSelectBox)
                                                             @forelse($suggestedProducts as $product)

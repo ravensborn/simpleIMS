@@ -23,8 +23,6 @@ class Orders extends Component
     public Customer $customer;
     public function mount($customer): void
     {
-
-
     }
 
     public function triggerDeleteItem($item): void
