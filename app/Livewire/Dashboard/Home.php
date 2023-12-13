@@ -62,7 +62,9 @@ class Home extends Component
 
         $this->cards[] = [
             'title' => 'Daily Cash Received',
-            'data' => '$' . number_format($orders->where('created_at', today())->sum('paid'), 2),
+            'data' => '$' . number_format($orders->filter(function ($order) {
+                    return $order->created_at->isToday();
+                })->sum('paid'), 2),
         ];
 
         $this->cards[] = [
@@ -75,7 +77,9 @@ class Home extends Component
 
         $this->cards[] = [
             'title' => 'Daily Profit',
-            'data' => '$' . number_format($orders->where('created_at', today())->sum(function ($order) {
+            'data' => '$' . number_format($orders->filter(function ($order) {
+                    return $order->created_at->isToday();
+                })->sum(function ($order) {
                     return $order->profit();
                 }), 2),
         ];
