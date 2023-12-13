@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29ad65e7-7270-481b-b20f-4af3181e62e0" name="Changes" comment="Added bash script for easier pulls.">
-      <change beforePath="$PROJECT_DIR$/.env.fiona-store.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.fiona-store.docker" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.hiwaphone.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.hiwaphone.docker" afterDir="false" />
+    <list default="true" id="29ad65e7-7270-481b-b20f-4af3181e62e0" name="Changes" comment="Added new website env.">
+      <change beforePath="$PROJECT_DIR$/.env.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.docker" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pull.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pull.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Livewire/Dashboard/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Dashboard/Home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/base.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/base.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/dashboard/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/dashboard/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +29,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ravensborn&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="76f32529-e6fe-4e29-8ac8-01a87337cd3c" />
+        <option name="url" value="https://github.com/ravensborn/simpleIMS.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -165,29 +182,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.laravel-idea.update-module-directories&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yad/Development/Personal/simpleIMS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.laravel-idea.update-module-directories": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/yad/Development/Personal/simpleIMS/resources/views/livewire/dashboard/reports",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/livewire/dashboard/reports" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/quick-pay-log/invoices" />
       <recent name="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/order-payments/invoices" />
       <recent name="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/invoices" />
-      <recent name="$PROJECT_DIR$/app/Livewire/Dashboard/Orders" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/livewire/dashboard/orders/invoices" />
@@ -200,6 +217,13 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-php-predefined-ba97393d7c68-74080bdb84d3-com.jetbrains.php.sharedIndexes-PS-233.11799.297" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -222,7 +246,16 @@
       <workItem from="1700301987553" duration="599000" />
       <workItem from="1700338505543" duration="97000" />
       <workItem from="1701279432598" duration="9418000" />
-      <workItem from="1701325920158" duration="1039000" />
+      <workItem from="1701325920158" duration="1664000" />
+      <workItem from="1701333624576" duration="836000" />
+      <workItem from="1701798339859" duration="1728000" />
+      <workItem from="1701848017162" duration="2183000" />
+      <workItem from="1701886612816" duration="18000" />
+      <workItem from="1701952199239" duration="1257000" />
+      <workItem from="1702027105398" duration="734000" />
+      <workItem from="1702113722354" duration="1803000" />
+      <workItem from="1702136255174" duration="1000" />
+      <workItem from="1702448968085" duration="2281000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed quick pay.">
       <option name="closed" value="true" />
@@ -248,7 +281,31 @@
       <option name="project" value="LOCAL" />
       <updated>1701326523188</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Hotfix for pulling bash script.">
+      <option name="closed" value="true" />
+      <created>1701326980696</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701326980696</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Reactive product sync button for a day.">
+      <option name="closed" value="true" />
+      <created>1701333693729</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701333693729</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added new website env.">
+      <option name="closed" value="true" />
+      <created>1701798493698</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701798493698</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +315,9 @@
     <MESSAGE value="Fixed quick pay." />
     <MESSAGE value="General improvements." />
     <MESSAGE value="Added bash script for easier pulls." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added bash script for easier pulls." />
+    <MESSAGE value="Hotfix for pulling bash script." />
+    <MESSAGE value="Reactive product sync button for a day." />
+    <MESSAGE value="Added new website env." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new website env." />
   </component>
 </project>

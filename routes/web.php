@@ -23,6 +23,7 @@ use App\Livewire\Dashboard\Products\Inventories\Create as ProductInventoryCreate
 use App\Livewire\Dashboard\Products\Inventories\Edit as ProductInventoryEdit;
 use App\Livewire\Dashboard\Products\Inventories\Index as ProductInventoryIndex;
 use App\Livewire\Dashboard\Products\Show as ProductShow;
+use App\Livewire\Dashboard\Reports\Index as ReportIndex;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -100,4 +101,6 @@ Route::middleware(['auth', 'checkSubscription'])->group(function () {
         });
 
     });
+
+    Route::get('/reports', ReportIndex::class)->name('reports.index');
 });

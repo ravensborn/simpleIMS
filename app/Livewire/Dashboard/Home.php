@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard;
 
 use App\Models\Customer;
+use App\Models\Inventory;
 use App\Models\Order;
 use App\Models\Product;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -20,6 +21,7 @@ class Home extends Component
         $orders = Order::all();
         $customers = Customer::all();
         $products = Product::all();
+        $inventories = Inventory::all();
 
         $this->cards[] = [
             'title' => 'Orders',
@@ -50,6 +52,42 @@ class Home extends Component
             'title' => 'Customers',
             'data' => $customers->count(),
         ];
+
+        $this->cards[] = [
+            'title' => 'Inventory Cost',
+            'data' => '$' . number_format($inventories->sum('cost'), 2),
+        ];
+
+        $this->cards[] = [
+            'title' => 'Daily Cash Received',
+            'data' => '$' . number_format($orders->where('created_at', today())->sum('paid'), 2),
+        ];
+
+        $this->cards[] = [
+            'title' => 'Monthly Cash Received',
+            'data' => '$' . number_format($orders->whereBetween('created_at', [
+                    today()->startOfMonth(),
+                    today()->endOfMonth(),
+                ])->sum('paid'), 2),
+        ];
+
+        $this->cards[] = [
+            'title' => 'Daily Profit',
+            'data' => '$' . number_format($orders->where('created_at', today())->sum(function ($order) {
+                    return $order->profit();
+                }), 2),
+        ];
+
+        $this->cards[] = [
+            'title' => 'Monthly Profit',
+            'data' => '$' . number_format($orders->whereBetween('created_at', [
+                    today()->startOfMonth(),
+                    today()->endOfMonth(),
+                ])->sum(function ($order) {
+                    return $order->profit();
+                }), 2),
+        ];
+
     }
 
     public function reSyncOrderStatuses(): void
