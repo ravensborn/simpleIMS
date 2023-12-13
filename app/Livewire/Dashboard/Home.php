@@ -55,7 +55,9 @@ class Home extends Component
 
         $this->cards[] = [
             'title' => 'Inventory Cost',
-            'data' => '$' . number_format($inventories->sum('cost'), 2),
+            'data' => '$' . number_format($inventories->sum(function ($inventory) {
+                    return $inventory->cost * $inventory->quantity;
+                }), 2),
         ];
 
         $this->cards[] = [
