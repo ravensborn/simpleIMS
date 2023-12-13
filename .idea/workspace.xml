@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29ad65e7-7270-481b-b20f-4af3181e62e0" name="Changes" comment="Added new website env.">
-      <change beforePath="$PROJECT_DIR$/.env.fiona-store.docker" beforeDir="false" afterPath="$PROJECT_DIR$/.env.fiona-store.docker" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Livewire/Dashboard/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Dashboard/Home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +249,7 @@
       <workItem from="1702027105398" duration="734000" />
       <workItem from="1702113722354" duration="1803000" />
       <workItem from="1702136255174" duration="1000" />
-      <workItem from="1702448968085" duration="3309000" />
+      <workItem from="1702448968085" duration="3919000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed quick pay.">
       <option name="closed" value="true" />
