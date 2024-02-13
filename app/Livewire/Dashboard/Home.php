@@ -68,6 +68,16 @@ class Home extends Component
         ];
 
         $this->cards[] = [
+            'title' => 'Daily Dept Received',
+            'data' => '$' . number_format($orders->filter(function ($order) {
+                    return $order->created_at->isBefore(today());
+                })->sum(function ($order) {
+                    return $order->orderPayments->sum('amount');
+                }), 2),
+        ];
+
+
+        $this->cards[] = [
             'title' => 'Monthly Cash Received',
             'data' => '$' . number_format($orders->whereBetween('created_at', [
                     today()->startOfMonth(),

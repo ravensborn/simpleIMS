@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="29ad65e7-7270-481b-b20f-4af3181e62e0" name="Changes" comment="Added new website env.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Livewire/Forms/OrderItemForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Forms/OrderItemForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Livewire/Dashboard/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Livewire/Dashboard/Home.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +261,7 @@
       <workItem from="1705914630051" duration="19000" />
       <workItem from="1707810262403" duration="1497000" />
       <workItem from="1707813736022" duration="665000" />
-      <workItem from="1707842396719" duration="4862000" />
+      <workItem from="1707842396719" duration="5756000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed quick pay.">
       <option name="closed" value="true" />
