@@ -72,7 +72,7 @@ class Home extends Component
             'data' => '$' . number_format($orders->filter(function ($order) {
                     return $order->created_at->isBefore(today());
                 })->sum(function ($order) {
-                    return $order->orderPayments->where('created_at', today())->sum('amount');
+                    return $order->orderPayments()->where('created_at', today())->sum('amount');
                 }), 2),
         ];
 
