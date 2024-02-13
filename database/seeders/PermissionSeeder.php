@@ -49,7 +49,7 @@ class PermissionSeeder extends Seeder
         ]);
 
         foreach (User::all() as $user) {
-            $user->assignRole(['user']);
+            $user->assignRole(['admin']);
         }
 
 
