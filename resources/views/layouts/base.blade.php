@@ -181,6 +181,7 @@
             <div class="navbar">
                 <div class="container-xl">
                     <ul class="navbar-nav">
+
                         <li class="nav-item @if(request()->is('/')) active @endif">
                             <a class="nav-link" href="{{ route('home') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -198,8 +199,9 @@
                             </a>
                         </li>
 
-                        <li class="nav-item @if(request()->is('customers*')) active @endif">
-                            <a class="nav-link" href="{{ route('customers.index') }}">
+                        @if(auth()->user()->hasPermissionTo('can view customers'))
+                            <li class="nav-item @if(request()->is('customers*')) active @endif">
+                                <a class="nav-link" href="{{ route('customers.index') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block"><svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         class="icon icon-tabler icon-tabler-user-bolt" width="24" height="24"
@@ -210,14 +212,16 @@
                                             d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/><path
                                             d="M6 21v-2a4 4 0 0 1 4 -4h4c.267 0 .529 .026 .781 .076"/><path
                                             d="M19 16l-2 3h4l-2 3"/></svg></span>
-                                <span class="nav-link-title">
+                                    <span class="nav-link-title">
                                     Customers
                                 </span>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
+                        @endif
 
-                        <li class="nav-item @if(request()->is('products*')) active @endif">
-                            <a class="nav-link" href="{{ route('products.index') }}">
+                        @if(auth()->user()->hasPermissionTo('can view products'))
+                            <li class="nav-item @if(request()->is('products*')) active @endif">
+                                <a class="nav-link" href="{{ route('products.index') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block"><svg
                                         xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box-seam"
                                         width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
@@ -229,14 +233,16 @@
   <path d="M12 12v9"/>
   <path d="M12 12l-8 -4.5"/>
 </svg></span>
-                                <span class="nav-link-title">
+                                    <span class="nav-link-title">
                                     Products
                                 </span>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
+                        @endif
 
-                        <li class="nav-item @if(request()->is('orders*')) active @endif">
-                            <a class="nav-link" href="{{ route('orders.index') }}">
+                        @if(auth()->user()->hasPermissionTo('can view orders'))
+                            <li class="nav-item @if(request()->is('orders*')) active @endif">
+                                <a class="nav-link" href="{{ route('orders.index') }}">
                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-truck-delivery" width="24" height="24"
      viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -246,27 +252,32 @@
   <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5"/>
   <path d="M3 9l4 0"/>
 </svg>                                </span>
-                                <span class="nav-link-title">
+                                    <span class="nav-link-title">
                                     Orders
                                 </span>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
+                        @endif
 
-                                                <li class="nav-item @if(request()->is('reports*')) active @endif">
-                                                    <a class="nav-link" href="{{ route('reports.index') }}">
+                        @if(auth()->user()->hasPermissionTo('can view reports'))
+                            <li class="nav-item @if(request()->is('reports*')) active @endif">
+                                <a class="nav-link" href="{{ route('reports.index') }}">
                                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-pie" width="24" height="24"
-                             viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-pie"
+                             width="24" height="24"
+                             viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
+                             stroke-linejoin="round">
                           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                          <path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8"/>
+                          <path
+                              d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8"/>
                           <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5"/>
                         </svg>                            </span>
-                                                        <span class="nav-link-title">
+                                    <span class="nav-link-title">
                                                             Reports
                                                         </span>
-                                                    </a>
-                                                </li>
-
+                                </a>
+                            </li>
+                        @endif
 
                     </ul>
                     <div class="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">

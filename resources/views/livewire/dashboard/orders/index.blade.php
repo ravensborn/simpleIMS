@@ -45,7 +45,9 @@
                                 <th>Total</th>
                                 <th>Paid</th>
                                 <th>Amount Due</th>
-                                <th></th>
+                                @if(auth()->user()->hasPermissionTo('can view profit'))
+                                    <th></th>
+                                @endif
                                 <th>Status</th>
                                 <th>Note</th>
                                 <th>Created At</th>
@@ -72,15 +74,17 @@
                                     <td class="text-center">${{ number_format($order->total, 2) }}</td>
                                     <td class="text-center">${{ number_format($order->paid, 2) }}</td>
                                     <td class="text-center">${{ number_format($order->amount_due, 2) }}</td>
-                                    <td class="text-center">
-                                        @if(array_key_exists($order->id, $this->orderProfitList))
-                                            {{ $this->getOrderProfit($order->id) }}
-                                        @else
-                                            <a href="#" wire:click.prevent="processOrderProfit({{ $order->id }})">
-                                                show
-                                            </a>
-                                        @endif
-                                    </td>
+                                    @if(auth()->user()->hasPermissionTo('can view profit'))
+                                        <td class="text-center">
+                                            @if(array_key_exists($order->id, $this->orderProfitList))
+                                                {{ $this->getOrderProfit($order->id) }}
+                                            @else
+                                                <a href="#" wire:click.prevent="processOrderProfit({{ $order->id }})">
+                                                    show
+                                                </a>
+                                            @endif
+                                        </td>
+                                    @endif
                                     <td>
                                         <div
                                             class="badge {{ $order->getBadgeColorByStatus()  }}">{{ ucfirst($order->status) }}</div>

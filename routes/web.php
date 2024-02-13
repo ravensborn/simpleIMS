@@ -64,7 +64,7 @@ Route::middleware(['auth', 'checkSubscription'])->group(function () {
         Route::get('/{customer}/edit', CustomerEdit::class)->name('edit');
         Route::get('/{customer}/orders', CustomerOrders::class)->name('orders');
         Route::get('/{customer}/print-details', CustomerPrintDetails::class)->name('print-details');
-    });
+    })->middleware(['can:can view customers']);
 
     Route::prefix('products')->as('products.')->group(function () {
 
@@ -78,7 +78,7 @@ Route::middleware(['auth', 'checkSubscription'])->group(function () {
             Route::get('/create', ProductInventoryCreate::class)->name('create');
             Route::get('/{inventory}/edit', ProductInventoryEdit::class)->name('edit');
         });
-    });
+    })->middleware(['can:can view products']);
 
     Route::prefix('orders')->as('orders.')->group(function () {
 
@@ -100,7 +100,7 @@ Route::middleware(['auth', 'checkSubscription'])->group(function () {
             Route::get('/invoice', OrderPaymentInvoice::class)->name('invoice');
         });
 
-    });
+    })->middleware(['can:can view orders']);
 
-    Route::get('/reports', ReportIndex::class)->name('reports.index');
+    Route::get('/reports', ReportIndex::class)->name('reports.index')->middleware(['can:can view reports']);
 });

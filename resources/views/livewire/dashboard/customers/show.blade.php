@@ -79,11 +79,12 @@
                                 </div>
                             </div>
 
-                            <div class="datagrid-item">
-                                <div class="datagrid-title">
-                                    Revenue
-                                </div>
-                                <div class="datagrid-content" wire:init="getProfit()">
+                            @if(auth()->user()->hasPermissionTo('can view profit'))
+                                <div class="datagrid-item">
+                                    <div class="datagrid-title">
+                                        Revenue
+                                    </div>
+                                    <div class="datagrid-content" wire:init="getProfit()">
 
                                      <span wire:loading wire:target="getProfit">
                                        <div class="spinner-border spinner-border-sm text-primary" role="status">
@@ -91,22 +92,20 @@
                                        </div>
                                     </span>
 
-                                    <span wire:loading.remove wire:target="getProfit">
+                                        <span wire:loading.remove wire:target="getProfit">
 
                                          @if($showProfit)
-                                            <span>${{ number_format($customerProfit, 2) }}</span>
-                                        @else
-                                            <a href="#" wire:click.prevent="showCustomerProfit()">
+                                                <span>${{ number_format($customerProfit, 2) }}</span>
+                                            @else
+                                                <a href="#" wire:click.prevent="showCustomerProfit()">
                                                 Show
                                             </a>
-                                        @endif
+                                            @endif
 
                                     </span>
-
-
-
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
                             @if($customer->note)
                                 <div class="datagrid-item">
