@@ -30,7 +30,7 @@ class OrderItemForm extends Form
 
     #[Locked]
     public Product|null $product = null;
-   
+
     public Inventory|null $inventory = null;
 
     private array $attributes = ['order_id', 'product_id', 'inventory_id', 'price', 'quantity'];
@@ -64,8 +64,7 @@ class OrderItemForm extends Form
 
         $this->inventory->decrement('quantity',  $model->quantity);
         $this->product->syncInventories();
-        $this->product->increment('times_sold');
-
+        $this->product->increment('times_sold', $model->quantity);
         $this->model = $model;
     }
 
