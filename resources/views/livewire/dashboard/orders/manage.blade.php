@@ -398,7 +398,7 @@
     <script>
 
         document.addEventListener('keydown', logKey);
-        document.addEventListener('keydown', logQuantityKey);
+        // document.addEventListener('keydown', logQuantityKey);
 
         function logQuantityKey(e) {
 
