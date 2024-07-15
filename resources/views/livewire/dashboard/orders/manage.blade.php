@@ -10,7 +10,7 @@
                     &nbsp;/&nbsp;
                     Items
                     &nbsp;/&nbsp;
-                   <span class="text-success">
+                    <span class="text-success">
                         <a href="{{ route('customers.show', $order->customer_id) }}">{{ $order->customer->name }}</a>
                    </span>
                 </h3>
@@ -180,7 +180,8 @@
                                                                      alt="">
                                                             </span>
                                                             <input type="text" id="product_id" class="form-control"
-                                                                   wire:model="selectedProductString" tabindex="1" disabled>
+                                                                   wire:model="selectedProductString" tabindex="1"
+                                                                   disabled>
                                                             <button class="btn" style="width: 70px;"
                                                                     wire:click.prevent="resetNewOrderItemForm()">
                                                                 Reset
@@ -198,7 +199,8 @@
                                                                 <a href="#" class="dropdown-item m-2"
                                                                    tabindex="{{ $loop->iteration + 2}}"
                                                                    wire:click="selectProduct({{ $product['id'] }})">
-                                                                    <span class="avatar avatar-xs rounded me-2" style="background-image: url('{{ $product['image'] }}')"></span>
+                                                                    <span class="avatar avatar-xs rounded me-2"
+                                                                          style="background-image: url('{{ $product['image'] }}')"></span>
                                                                     <span @class(['text-danger' => !$product['available_inventory']])>
 
                                                                         @if($product['code'])
@@ -317,8 +319,9 @@
                                             </div>
 
                                             <div class="mt-3 border-top pt-3">
-                                                <button @class([ 'btn btn-primary' => true, 'disabled' => ($order->amount_due == 0)]) wire:target="storePayment"
-                                                        wire:loading.attr="disabled">
+                                                <button
+                                                    @class([ 'btn btn-primary' => true, 'disabled' => ($order->amount_due == 0)]) wire:target="storePayment"
+                                                    wire:loading.attr="disabled">
                                                     <i class="bi bi-plus me-2"></i>
                                                     Add
                                                     <div wire:loading wire:target="storePayment">
@@ -395,11 +398,18 @@
     <script>
 
         document.addEventListener('keydown', logKey);
-        document.addEventListener('keydown', test);
+        document.addEventListener('keydown', logQuantityKey);
 
-        function test(e) {
+        function logQuantityKey(e) {
+
+            let element = document.getElementById("quantity");
+            let text = element.value;
+
             if (e.keyCode === 84) {
-                document.getElementById("quantity").focus();
+
+                text = text.substring(0, text.length - 1);
+                element.value = text;
+                element.focus();
             }
         }
 
