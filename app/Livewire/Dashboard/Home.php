@@ -86,6 +86,13 @@ class Home extends Component
         ];
 
         $this->cards[] = [
+            'title' => 'Total Profit',
+            'data' => '$' . number_format($orders->sum(function ($order) {
+                    return $order->profit();
+                }), 2),
+        ];
+
+        $this->cards[] = [
             'title' => 'Daily Profit',
             'data' => '$' . number_format($orders->filter(function ($order) {
                     return $order->created_at->isToday();
