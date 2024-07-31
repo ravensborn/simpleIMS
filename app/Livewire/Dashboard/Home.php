@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Inventory;
 use App\Models\Order;
 use App\Models\Product;
+use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -83,6 +84,15 @@ class Home extends Component
                     today()->startOfMonth(),
                     today()->endOfMonth(),
                 ])->sum('paid'), 2),
+        ];
+
+        $this->cards[] = [
+            'title' => 'Last Year Profit',
+            'data' => '$' . number_format($orders->filter(function ($order) {
+                    return $order->created_at->isLastYear();
+                })->sum(function ($order) {
+                    return $order->profit();
+                }), 2),
         ];
 
         $this->cards[] = [
